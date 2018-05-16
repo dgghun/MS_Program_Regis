@@ -5,59 +5,84 @@ package com.sessionnotes.model.domain;
 
 import java.util.ArrayList;
 
-
 /**
- *	Will require
- * a.	Full name (required)
- * b.	Phone number (required)
- * c.	Street address 
- * d.	Email address
- * e.	Hourly fee amount
- * f.	Any secondary patients names (family therapy, couple therapy)
- * g.	Insurance information
- * h.	Attach any forms or documents (not a priority as of yet)
  * @author David_Garcia
  *
  */
 public class Client {
-	
+	private int idNumber;
 	private Name name;
 	private String phoneNumber;
-	private StreetAddress streetAddress;
+	private Address address;
 	private String email;
 	private short fee;
 	private ArrayList<Name> secondaryClients;
 	private InsuranceCard insuranceCard;
-	
-	
-	
-	
+
+	private final byte mMIN_ID_NUMBER = 0;
+	private final short mMIN_FEE_AMOUNT = 0;
+
 	/**
-	 * 
+	 * @param idNumber
 	 * @param name
 	 * @param phoneNumber
-	 * @param streetAddress
+	 * @param address
 	 * @param email
 	 * @param fee
 	 * @param secondaryClients
 	 * @param insuranceCard
-	 * 
-	 * Full information constructor
 	 */
-	public Client(Name name, String phoneNumber, StreetAddress streetAddress, String email, short fee,
+	public Client(int idNumber, Name name, String phoneNumber, Address address, String email, short fee,
 			ArrayList<Name> secondaryClients, InsuranceCard insuranceCard) {
-		super();
+		this.idNumber = idNumber;
 		this.name = name;
 		this.phoneNumber = phoneNumber;
-		this.streetAddress = streetAddress;
+		this.address = address;
 		this.email = email;
 		this.fee = fee;
 		this.secondaryClients = secondaryClients;
 		this.insuranceCard = insuranceCard;
 	}
 
+	/**
+	 * Validates that the objects data members are not null.
+	 * 
+	 * @return
+	 */
+	public Boolean validate() {
+		if (idNumber < mMIN_ID_NUMBER)
+			return false;
+		if (name == null)
+			return false;
+		if (phoneNumber == null)
+			return false;
+		if (address == null)
+			return false;
+		if (email == null)
+			return false;
+		if (fee < mMIN_FEE_AMOUNT)
+			return false;
+		if (secondaryClients == null)
+			return false;
+		if (insuranceCard == null)
+			return false;
+		return true;
+	}
 
+	/**
+	 * @return the idNumber
+	 */
+	public int getIdNumber() {
+		return idNumber;
+	}
 
+	/**
+	 * @param idNumber
+	 *            the idNumber to set
+	 */
+	public void setIdNumber(int idNumber) {
+		this.idNumber = idNumber;
+	}
 
 	/**
 	 * @return the name
@@ -66,18 +91,13 @@ public class Client {
 		return name;
 	}
 
-
-
-
 	/**
-	 * @param name the name to set
+	 * @param name
+	 *            the name to set
 	 */
 	public void setName(Name name) {
 		this.name = name;
 	}
-
-
-
 
 	/**
 	 * @return the phoneNumber
@@ -86,38 +106,28 @@ public class Client {
 		return phoneNumber;
 	}
 
-
-
-
 	/**
-	 * @param phoneNumber the phoneNumber to set
+	 * @param phoneNumber
+	 *            the phoneNumber to set
 	 */
 	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;
 	}
 
-
-
-
 	/**
-	 * @return the streetAddress
+	 * @return the address
 	 */
-	public StreetAddress getStreetAddress() {
-		return streetAddress;
+	public Address getAddress() {
+		return address;
 	}
 
-
-
-
 	/**
-	 * @param streetAddress the streetAddress to set
+	 * @param address
+	 *            the address to set
 	 */
-	public void setStreetAddress(StreetAddress streetAddress) {
-		this.streetAddress = streetAddress;
+	public void setAddress(Address address) {
+		this.address = address;
 	}
-
-
-
 
 	/**
 	 * @return the email
@@ -126,18 +136,13 @@ public class Client {
 		return email;
 	}
 
-
-
-
 	/**
-	 * @param email the email to set
+	 * @param email
+	 *            the email to set
 	 */
 	public void setEmail(String email) {
 		this.email = email;
 	}
-
-
-
 
 	/**
 	 * @return the fee
@@ -146,18 +151,13 @@ public class Client {
 		return fee;
 	}
 
-
-
-
 	/**
-	 * @param fee the fee to set
+	 * @param fee
+	 *            the fee to set
 	 */
 	public void setFee(short fee) {
 		this.fee = fee;
 	}
-
-
-
 
 	/**
 	 * @return the secondaryClients
@@ -166,18 +166,13 @@ public class Client {
 		return secondaryClients;
 	}
 
-
-
-
 	/**
-	 * @param secondaryClients the secondaryClients to set
+	 * @param secondaryClients
+	 *            the secondaryClients to set
 	 */
 	public void setSecondaryClients(ArrayList<Name> secondaryClients) {
 		this.secondaryClients = secondaryClients;
 	}
-
-
-
 
 	/**
 	 * @return the insuranceCard
@@ -186,16 +181,95 @@ public class Client {
 		return insuranceCard;
 	}
 
-
-
-
 	/**
-	 * @param insuranceCard the insuranceCard to set
+	 * @param insuranceCard
+	 *            the insuranceCard to set
 	 */
 	public void setInsuranceCard(InsuranceCard insuranceCard) {
 		this.insuranceCard = insuranceCard;
 	}
-	
-	
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.lang.Object#hashCode()
+	 */
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((address == null) ? 0 : address.hashCode());
+		result = prime * result + ((email == null) ? 0 : email.hashCode());
+		result = prime * result + fee;
+		result = prime * result + idNumber;
+		result = prime * result + ((insuranceCard == null) ? 0 : insuranceCard.hashCode());
+		result = prime * result + ((name == null) ? 0 : name.hashCode());
+		result = prime * result + ((phoneNumber == null) ? 0 : phoneNumber.hashCode());
+		result = prime * result + ((secondaryClients == null) ? 0 : secondaryClients.hashCode());
+		return result;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Client other = (Client) obj;
+		if (address == null) {
+			if (other.address != null)
+				return false;
+		} else if (!address.equals(other.address))
+			return false;
+		if (email == null) {
+			if (other.email != null)
+				return false;
+		} else if (!email.equals(other.email))
+			return false;
+		if (fee != other.fee)
+			return false;
+		if (idNumber != other.idNumber)
+			return false;
+		if (insuranceCard == null) {
+			if (other.insuranceCard != null)
+				return false;
+		} else if (!insuranceCard.equals(other.insuranceCard))
+			return false;
+		if (name == null) {
+			if (other.name != null)
+				return false;
+		} else if (!name.equals(other.name))
+			return false;
+		if (phoneNumber == null) {
+			if (other.phoneNumber != null)
+				return false;
+		} else if (!phoneNumber.equals(other.phoneNumber))
+			return false;
+		if (secondaryClients == null) {
+			if (other.secondaryClients != null)
+				return false;
+		} else if (!secondaryClients.equals(other.secondaryClients))
+			return false;
+		return true;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "Client [idNumber=" + idNumber + ", name=" + name + ", phoneNumber=" + phoneNumber + ", address="
+				+ address + ", email=" + email + ", fee=" + fee + ", secondaryClients=" + secondaryClients
+				+ ", insuranceCard=" + insuranceCard + "]";
+	}
 
 }
