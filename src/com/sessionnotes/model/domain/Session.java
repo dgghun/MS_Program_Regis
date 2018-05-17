@@ -229,4 +229,15 @@ public class Session {
 		return true;
 	}
 
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "Session [client=" + client + ", date=" + date + ", time=" + time + ", feeAmount=" + feeAmount
+				+ ", feePaid=" + feePaid + ", paymentType=" + paymentType + ", note=" + note + ", mMIN_FEE_AMOUNT="
+				+ mMIN_FEE_AMOUNT + "]";
+	}
+
+	
 }
