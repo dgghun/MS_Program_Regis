@@ -1,5 +1,15 @@
 package com.sessionnotes.model.domain;
 
+/**
+ * <h1>Name</h1>
+ * This class provides encapsulation of basic name
+ * parameters of a client/patient. 
+ * 
+ * @author David_Garcia
+ * @version 1.0
+ * @since 5-17-2018
+ *
+ */
 public class Name {
 	private String firstName;
 	private String lastName;
@@ -18,7 +28,7 @@ public class Name {
 
 	/**
 	 * Validates that the objects data members are not null.
-	 * @return
+	 * @return Boolean This returns true if the object attributes are not null/empty; 
 	 */
 	public Boolean validate() {
 		if(firstName == null)

@@ -4,8 +4,14 @@ import java.util.Calendar;
 
 
 /**
- *
+ * <h1>InsuranceCard</h1>
+ * This class contains information a client/patient
+ * would need to provide so that the private practice
+ * business owner could bill insurance.
+ * 
  * @author David_Garcia
+ * @version 1.0
+ * @since 5-17-2018
  *
  */
 public class InsuranceCard {
@@ -40,7 +46,7 @@ public class InsuranceCard {
 	/**
 	 * Validates that the objects data members are not null.
 	 * 
-	 * @return
+	 * @return Boolean This returns true if the object attributes are not null/empty;
 	 */
 	public Boolean validate() {
 		if (insuranceType == null)
@@ -165,9 +171,7 @@ public class InsuranceCard {
 		this.insuredBirthdate = insuredBirthdate;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
+	/* (non-Javadoc)
 	 * @see java.lang.Object#hashCode()
 	 */
 	@Override
@@ -184,9 +188,7 @@ public class InsuranceCard {
 		return result;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
+	/* (non-Javadoc)
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 */
 	@Override

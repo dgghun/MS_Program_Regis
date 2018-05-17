@@ -7,9 +7,16 @@ import java.sql.Time;
 import java.util.Calendar;
 
 /**
- * @author David_Garcia
- *
- */
+* <h1>Session</h1>
+* This class represents the information that is required
+* by a private practice business when a therapy
+* session is conducted.  
+* 
+* @author David_Garcia
+* @version 1.0
+* @since 5-17-2018
+*
+*/
 public class Session {
 	private Client client;
 	private Calendar date;
@@ -41,6 +48,10 @@ public class Session {
 		this.note = note;
 	}
 
+	/**
+	 * 
+	 * @return Boolean This returns true if the object attributes are not empty/null.
+	 */
 	public Boolean validate() {
 		if (client == null)
 			return false;
@@ -164,9 +175,7 @@ public class Session {
 		this.note = note;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
+	/* (non-Javadoc)
 	 * @see java.lang.Object#hashCode()
 	 */
 	@Override
@@ -177,15 +186,14 @@ public class Session {
 		result = prime * result + ((date == null) ? 0 : date.hashCode());
 		result = prime * result + feeAmount;
 		result = prime * result + feePaid;
+		result = prime * result + mMIN_FEE_AMOUNT;
 		result = prime * result + ((note == null) ? 0 : note.hashCode());
 		result = prime * result + ((paymentType == null) ? 0 : paymentType.hashCode());
 		result = prime * result + ((time == null) ? 0 : time.hashCode());
 		return result;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
+	/* (non-Javadoc)
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 */
 	@Override
@@ -210,6 +218,8 @@ public class Session {
 		if (feeAmount != other.feeAmount)
 			return false;
 		if (feePaid != other.feePaid)
+			return false;
+		if (mMIN_FEE_AMOUNT != other.mMIN_FEE_AMOUNT)
 			return false;
 		if (note == null) {
 			if (other.note != null)

@@ -6,7 +6,14 @@ package com.sessionnotes.model.domain;
 import java.util.ArrayList;
 
 /**
+ * <h1>Client</h1>
+ * The Client class represents information a
+ * typical client/patient would need to provide
+ * to the private practice business owner.
+ * 
  * @author David_Garcia
+ * @version 1.0
+ * @since 5--17-2018
  *
  */
 public class Client {
@@ -47,7 +54,7 @@ public class Client {
 	/**
 	 * Validates that the objects data members are not null.
 	 * 
-	 * @return
+	 * @return Boolean This returns true if the object attributes are not null/empty;
 	 */
 	public Boolean validate() {
 		if (idNumber < mMIN_ID_NUMBER)
@@ -189,9 +196,7 @@ public class Client {
 		this.insuranceCard = insuranceCard;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
+	/* (non-Javadoc)
 	 * @see java.lang.Object#hashCode()
 	 */
 	@Override
@@ -203,15 +208,15 @@ public class Client {
 		result = prime * result + fee;
 		result = prime * result + idNumber;
 		result = prime * result + ((insuranceCard == null) ? 0 : insuranceCard.hashCode());
+		result = prime * result + mMIN_FEE_AMOUNT;
+		result = prime * result + mMIN_ID_NUMBER;
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		result = prime * result + ((phoneNumber == null) ? 0 : phoneNumber.hashCode());
 		result = prime * result + ((secondaryClients == null) ? 0 : secondaryClients.hashCode());
 		return result;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
+	/* (non-Javadoc)
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 */
 	@Override
@@ -241,6 +246,10 @@ public class Client {
 			if (other.insuranceCard != null)
 				return false;
 		} else if (!insuranceCard.equals(other.insuranceCard))
+			return false;
+		if (mMIN_FEE_AMOUNT != other.mMIN_FEE_AMOUNT)
+			return false;
+		if (mMIN_ID_NUMBER != other.mMIN_ID_NUMBER)
 			return false;
 		if (name == null) {
 			if (other.name != null)

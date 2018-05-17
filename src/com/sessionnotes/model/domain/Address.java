@@ -1,5 +1,13 @@
 package com.sessionnotes.model.domain;
 
+/**
+ * <h1>Address</h1>
+ * The Address class holds basic street address information.
+ * 
+ * @author David_Garcia
+ * @version 1.0
+ * @since 5-17-2018
+ */
 public class Address {
 	private String streetAddress;
 	private String zipCode;
@@ -22,7 +30,7 @@ public class Address {
 	/**
 	 * Validates that the objects data members are not null.
 	 * 
-	 * @return
+	 * @return Boolean This returns true if the object attributes are not null/empty;
 	 */
 	public Boolean validate() {
 		if (streetAddress == null)
@@ -96,9 +104,7 @@ public class Address {
 		this.state = state;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
+	/* (non-Javadoc)
 	 * @see java.lang.Object#hashCode()
 	 */
 	@Override
@@ -112,9 +118,7 @@ public class Address {
 		return result;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
+	/* (non-Javadoc)
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 */
 	@Override
