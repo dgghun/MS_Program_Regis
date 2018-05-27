@@ -24,6 +24,12 @@ public class InsuranceCard {
 	private Calendar insuredBirthdate;
 
 	/**
+	 * Default constructor
+	 */
+	public InsuranceCard() {}
+	
+	
+	/**
 	 * @param insuranceType
 	 * @param idNumber
 	 * @param groupNumber

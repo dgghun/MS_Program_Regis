@@ -30,6 +30,12 @@ public class Client {
 	private final short mMIN_FEE_AMOUNT = 0;
 
 	/**
+	 * Default constructor
+	 */
+	public Client() {}
+	
+	
+	/**
 	 * @param idNumber
 	 * @param name
 	 * @param phoneNumber

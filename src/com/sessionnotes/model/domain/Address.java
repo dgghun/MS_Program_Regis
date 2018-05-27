@@ -14,6 +14,13 @@ public class Address {
 	private String city;
 	private String state;
 
+	
+	/**
+	 * Default constructor
+	 */
+	public Address() {}
+	
+	
 	/**
 	 * @param streetAddress
 	 * @param zipCode

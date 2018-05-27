@@ -29,6 +29,12 @@ public class Session {
 	private final short mMIN_FEE_AMOUNT = 0;
 
 	/**
+	 * Default constructor 
+	 */
+	public Session() {}
+	
+	
+	/**
 	 * @param client
 	 * @param date
 	 * @param time

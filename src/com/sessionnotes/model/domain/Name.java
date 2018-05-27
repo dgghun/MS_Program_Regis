@@ -16,6 +16,13 @@ public class Name {
 	private String middleName;
 
 	/**
+	 * Default constructor
+	 */
+	public Name() {}
+	
+	
+	
+	/**
 	 * @param firstName
 	 * @param lastName
 	 * @param middleName
