@@ -1,9 +1,10 @@
 /**
  * 
  */
-package com.seesionnotes.model.service;
+package com.sessionnotes.model.service.clientservice;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
+
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
 
@@ -14,16 +15,15 @@ import com.sessionnotes.model.domain.Address;
 import com.sessionnotes.model.domain.Client;
 import com.sessionnotes.model.domain.InsuranceCard;
 import com.sessionnotes.model.domain.Name;
-import com.sessionnotes.model.service.Factory;
-import com.sessionnotes.model.service.IClientSvc;
+import com.sessionnotes.model.service.clientservice.IClientSvc;
+import com.sessionnotes.model.service.factory.ServiceFactory;
 
 /**
- * @author David Garcia
+ * @author David_Garcia
  *
  */
-public class FactoryTest_ClientSvcImpl {
-
-	private static Factory factory;
+public class ClientSvcImplTest {
+	private static ServiceFactory serviceFactory;
 	private static IClientSvc clientSvc;
 	private static Client client;
 	
@@ -32,8 +32,8 @@ public class FactoryTest_ClientSvcImpl {
 	 */
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-		factory = new Factory();	// Create factory object
-		clientSvc = factory.getClientSvc();	// Get Client service from Factory
+		serviceFactory = new ServiceFactory();	// Create factory object
+		clientSvc = serviceFactory.getClientSvc();	// Get Client service from Factory
 		
 		// Setup client information to add to Client objects
 		Name name = new Name("David", "Garcia", "Gabriel");
@@ -51,7 +51,7 @@ public class FactoryTest_ClientSvcImpl {
 
 	
 	/**
-	 * Test method for {@link com.sessionnotes.model.service.ClientSvcImpl#createClient(Client)}
+	 * Test method for {@link com.sessionnotes.model.service.clientservice.ClientSvcImpl#createClient(Client)}
 	 */
 	@Test
 	public void testFactoryCreateClient() {
@@ -61,7 +61,7 @@ public class FactoryTest_ClientSvcImpl {
 	}
 	
 	/**
-	 * Test method for {@link com.sessionnotes.model.service.ClientSvcImpl#retrieveClient(Client)}
+	 * Test method for {@link com.sessionnotes.model.service.clientservice.ClientSvcImpl#retrieveClient(Client)}
 	 */
 	@Test
 	public void testFactoryRetrieveClient() {
@@ -71,7 +71,7 @@ public class FactoryTest_ClientSvcImpl {
 	}
 	
 	/**
-	 * Test method for {@link com.sessionnotes.model.service.ClientSvcImpl#updateClient(Client)}
+	 * Test method for {@link com.sessionnotes.model.service.clientservice.ClientSvcImpl#updateClient(Client)}
 	 */
 	@Test
 	public void testFactoryUpdateClient() {
@@ -79,5 +79,4 @@ public class FactoryTest_ClientSvcImpl {
 		assertTrue(client.equals(clientSvc.updateClient(client)));
 		System.out.println("testFactoryUpdateClient PASSED");
 	}
-
 }

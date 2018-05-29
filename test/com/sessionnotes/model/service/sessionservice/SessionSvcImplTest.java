@@ -1,9 +1,9 @@
 /**
  * 
  */
-package com.seesionnotes.model.service;
+package com.sessionnotes.model.service.sessionservice;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
 
 import java.sql.Time;
 import java.util.ArrayList;
@@ -18,16 +18,15 @@ import com.sessionnotes.model.domain.Client;
 import com.sessionnotes.model.domain.InsuranceCard;
 import com.sessionnotes.model.domain.Name;
 import com.sessionnotes.model.domain.Session;
-import com.sessionnotes.model.service.Factory;
-import com.sessionnotes.model.service.ISessionSvc;
+import com.sessionnotes.model.service.factory.ServiceFactory;
+import com.sessionnotes.model.service.sessionservice.ISessionSvc;
 
 /**
- * @author David Garcia
+ * @author David_Garcia
  *
  */
-public class FactoryTest_SessionSvcImpl {
-
-	private static Factory factory;
+public class SessionSvcImplTest {
+	private static ServiceFactory serviceFactory;
 	private static ISessionSvc sessionSvc;
 	private static Client client;
 	private static Session session;
@@ -37,8 +36,8 @@ public class FactoryTest_SessionSvcImpl {
 	 */
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-		factory = new Factory();
-		sessionSvc = factory.getSessionSvc();
+		serviceFactory = new ServiceFactory();
+		sessionSvc = serviceFactory.getSessionSvc();
 		
 		// Setup client information to add to Client objects
 		Name name = new Name("David", "Garcia", "Gabriel");
@@ -76,7 +75,7 @@ public class FactoryTest_SessionSvcImpl {
 	}
 	
 	/**
-	 * Test method for {@link com.sessionnotes.model.service.SessionSvcImpl#retrieveSession(Session)}
+	 * Test method for {@link com.sessionnotes.model.service.sessionservice.SessionSvcImpl#retrieveSession(Session)}
 	 */
 	@Test
 	public void testFactoryRetrieveSession() {
@@ -86,7 +85,7 @@ public class FactoryTest_SessionSvcImpl {
 	}
 	
 	/**
-	 * Test method for {@link com.sessionnotes.model.service.SessionSvcImpl#updateSession(Session)}
+	 * Test method for {@link com.sessionnotes.model.service.sessionservice.SessionSvcImpl#updateSession(Session)}
 	 */
 	@Test
 	public void testFactoryUpdateSession() {
@@ -94,5 +93,4 @@ public class FactoryTest_SessionSvcImpl {
 		assertTrue(session.equals(sessionSvc.updateSession(session)));
 		System.out.println("testFactoryUpdateSession PASSED");
 	}
-	
 }

@@ -1,4 +1,4 @@
-package com.sessionnotes.model.service;
+package com.sessionnotes.model.service.sessionservice;
 
 import com.sessionnotes.model.domain.Session;
 
