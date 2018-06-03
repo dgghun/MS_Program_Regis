@@ -22,12 +22,12 @@ import com.sessionnotes.model.service.factory.ServiceFactory;
 
 /**
  * @author David_Garcia
- *
+ * @since 6-3-2018
  */
 public class ClientSvcImplTest {
 	private static ServiceFactory serviceFactory;
 	private static Client client;
-	private static IClientSvc clientService;
+	private static IClientSvc clientSvc;
 	
 	/**
 	 * @throws java.lang.Exception
@@ -48,6 +48,9 @@ public class ClientSvcImplTest {
 
 		// Create Client objects
 		client = new Client(123, name, "909-555-5555", address, "dave@regis.edu", fee, secondaryClients, insuranceCard);
+		
+		//In case tests are run out of order this service is instantiated
+		clientSvc = (IClientSvc) serviceFactory.getService(IClientSvc.NAME);
 	}
 
 	
@@ -57,12 +60,10 @@ public class ClientSvcImplTest {
 	@Test
 	public void testFactoryCreateClient() {
 		try {
-			
-			clientService = (IClientSvc) serviceFactory.getService(IClientSvc.NAME);
-			System.out.println("Starting testFactoryCreateClient");
-			assertTrue(clientService.createClient(client));		// Will return true if successful
+			clientSvc = (IClientSvc) serviceFactory.getService(IClientSvc.NAME);
+			System.out.println("\nStarting testFactoryCreateClient");
+			assertTrue(clientSvc.createClient(client));		// Will return true if successful
 			System.out.println("testFactoryCreateClient PASSED");
-			
 		}catch(ServiceLoadException e) {
 			e.printStackTrace();
 			fail("ServiceLoad exception");
@@ -71,24 +72,34 @@ public class ClientSvcImplTest {
 			fail("ClientExcpetion exception");
 		}
 	}
-//	
-//	/**
-//	 * Test method for {@link com.sessionnotes.model.service.clientservice.ClientSvcImpl#retrieveClient(Client)}
-//	 */
-//	@Test
-//	public void testFactoryRetrieveClient() {
-//		System.out.println("Starting testFactoryRetrieveClient");
-//		assertTrue(client.equals(clientSvc.retrieveClient(client)));
-//		System.out.println("testFactoryRetrieveClient PASSED");
-//	}
-//	
-//	/**
-//	 * Test method for {@link com.sessionnotes.model.service.clientservice.ClientSvcImpl#updateClient(Client)}
-//	 */
-//	@Test
-//	public void testFactoryUpdateClient() {
-//		System.out.println("Starting testFactoryUpdateClient");
-//		assertTrue(client.equals(clientSvc.updateClient(client)));
-//		System.out.println("testFactoryUpdateClient PASSED");
-//	}
+	
+	/**
+	 * Test method for {@link com.sessionnotes.model.service.clientservice.ClientSvcImpl#retrieveClient(Client)}
+	 */
+	@Test
+	public void testFactoryRetrieveClient() {
+		try {
+			System.out.println("\nStarting testFactoryRetrieveClient");
+			assertTrue(client.equals(clientSvc.retrieveClient(client)));
+			System.out.println("testFactoryRetrieveClient PASSED");
+		}catch(Exception e) {
+			e.printStackTrace();
+			fail("ClientSvcImpl Exception on stubbed out method");
+		}
+	}
+	
+	/**
+	 * Test method for {@link com.sessionnotes.model.service.clientservice.ClientSvcImpl#updateClient(Client)}
+	 */
+	@Test
+	public void testFactoryUpdateClient() {
+		try {
+			System.out.println("\nStarting testFactoryUpdateClient");
+			assertTrue(clientSvc.updateClient(client));
+			System.out.println("testFactoryUpdateClient PASSED");
+		} catch (Exception e) {
+			e.printStackTrace();
+			fail("ClientSvcImpl Exception on stubbed out method");
+		}
+	}
 }

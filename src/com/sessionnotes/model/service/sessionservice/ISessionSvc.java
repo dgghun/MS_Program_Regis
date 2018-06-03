@@ -21,7 +21,7 @@ public interface ISessionSvc extends IService{
 	
 	public final String NAME = "ISessionSvc";	// Factory will look up NAME in properties file.
 	
-	public Session createSession(Session session) throws SessionException;
+	public boolean createSession(Session session) throws SessionException;
 	public Session retrieveSession(Session session) throws SessionException;
-	public Session updateSession(Session session) throws SessionException;
+	public boolean updateSession(Session session) throws SessionException;
 }
