@@ -1,5 +1,6 @@
 package com.sessionnotes.model.domain;
 
+import java.io.Serializable;
 import java.util.Calendar;
 
 
@@ -14,7 +15,11 @@ import java.util.Calendar;
  * @since 5-17-2018
  *
  */
-public class InsuranceCard {
+public class InsuranceCard implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String insuranceType; // This will be Medicare, Medicaid, GroupHealthPlan (id#), ETC.
 	private String idNumber;
 	private String groupNumber;

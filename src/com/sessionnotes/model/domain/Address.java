@@ -1,5 +1,7 @@
 package com.sessionnotes.model.domain;
 
+import java.io.Serializable;
+
 /**
  * <h1>Address</h1>
  * The Address class holds basic street address information.
@@ -8,7 +10,11 @@ package com.sessionnotes.model.domain;
  * @version 1.0
  * @since 5-17-2018
  */
-public class Address {
+public class Address implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String streetAddress;
 	private String zipCode;
 	private String city;

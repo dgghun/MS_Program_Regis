@@ -1,5 +1,7 @@
 package com.sessionnotes.model.domain;
 
+import java.io.Serializable;
+
 /**
  * <h1>Name</h1>
  * This class provides encapsulation of basic name
@@ -10,7 +12,11 @@ package com.sessionnotes.model.domain;
  * @since 5-17-2018
  *
  */
-public class Name {
+public class Name implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String firstName;
 	private String lastName;
 	private String middleName;

@@ -3,6 +3,7 @@
  */
 package com.sessionnotes.model.domain;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
@@ -16,7 +17,11 @@ import java.util.ArrayList;
  * @since 5--17-2018
  *
  */
-public class Client {
+public class Client implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private int idNumber;
 	private Name name;
 	private String phoneNumber;

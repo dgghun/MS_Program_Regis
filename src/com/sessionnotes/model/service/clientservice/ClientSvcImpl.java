@@ -3,7 +3,12 @@
  */
 package com.sessionnotes.model.service.clientservice;
 
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+
 import com.sessionnotes.model.domain.Client;
+import com.sessionnotes.model.service.exception.ClientException;
 
 /**
  * <h1>ClientSvcImpl</h1>
@@ -18,15 +23,44 @@ import com.sessionnotes.model.domain.Client;
  */
 public class ClientSvcImpl implements IClientSvc{
 	
-
+	private ObjectOutputStream output;
+	
 	/**
-	 * @param client
-	 * @return client	Stubbed out for now
+	 * @param client Client object
+	 * @return boolean Returns true if 
 	 */
-	public Client createClient(Client client) {
+	@Override
+	public boolean createClient(Client client) throws ClientException{
+		boolean success = false;
 		
-		return client;	
+		try {
+			
+			output = new ObjectOutputStream(new FileOutputStream("clients"));
+			output.writeObject(client);
+			
+			success = true;	// set to true indicating everything went well
+			
+		}catch (IOException ioException) {
+			System.out.println("IOException while trying to save Client to file!");
+			throw new ClientException("IOException while trying to save Client to file!", ioException);
+		}catch (Exception e) {
+			System.out.println("Exception while trying to save Client to file!");
+			throw new ClientException("Exception while trying to save Client to file!", e);
+		}finally {
+			//Flush and close stream
+			if(output != null) {
+				try {
+					output.flush();
+					output.close();		
+				}catch(Exception e) {
+					e.printStackTrace();
+				}
+			}
+		}// end try/catch/finally
+		
+		return success; 
 	}
+	
 
 	/**
 	 * @param client
@@ -42,8 +76,8 @@ public class ClientSvcImpl implements IClientSvc{
 	 * @param client
 	 * @return client	Stubbed out for now
 	 */
-	public Client updateClient(Client client) {
-		return client;
+	public boolean updateClient(Client client) {
+		return true;
 	}
 	
 	

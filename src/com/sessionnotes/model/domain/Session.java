@@ -3,6 +3,7 @@
  */
 package com.sessionnotes.model.domain;
 
+import java.io.Serializable;
 import java.sql.Time;
 import java.util.Calendar;
 
@@ -17,7 +18,11 @@ import java.util.Calendar;
 * @since 5-17-2018
 *
 */
-public class Session {
+public class Session implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Client client;
 	private Calendar date;
 	private Time time;
