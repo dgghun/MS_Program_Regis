@@ -5,6 +5,7 @@ package com.sessionnotes.model.service.factory;
 
 import com.sessionnotes.model.business.exception.ServiceLoadException;
 import com.sessionnotes.model.service.IService;
+import com.sessionnotes.model.service.manager.PropertyManager;
 
 /**
  * <h1>Factory</h1>
@@ -20,7 +21,7 @@ import com.sessionnotes.model.service.IService;
  * of this class.
  * 
  * @author David_Garcia
- * @version 2.0
+ * @version 2.1 - Using PropertyManager now to get class name from properties file
  * @since 6-2-2018
  */
 public class ServiceFactory {
@@ -43,7 +44,9 @@ public class ServiceFactory {
 	public IService getService(String serviceName) throws ServiceLoadException{
 		
 		try {		
-			Class<?> c = Class.forName(getImplName(serviceName));	//get class name from properties file.
+//			Class<?> c = Class.forName(getImplName(serviceName));	//get class name from properties file.
+			Class<?> c = Class.forName(PropertyManager.getPropertyValue(serviceName));	//get class name from PropertyManager
+			
 			return (IService) c.newInstance();	// return instance of IService class requested.
 			
 		}catch(Exception exception) {
@@ -52,54 +55,23 @@ public class ServiceFactory {
 		
 	}
 	
-	/**
-	 * 
-	 * @param serviceName This is a string of the requested service class name.
-	 * @return serviceImpl The implementation of the requested service.
-	 * @throws Exception Any issues with loading the properties file.
-	 */
-	private String getImplName(String serviceName) throws Exception{
+//	/**
+//	 * 
+//	 * @param serviceName This is a string of the requested service class name.
+//	 * @return serviceImpl The implementation of the requested service.
+//	 * @throws Exception Any issues with loading the properties file.
+//	 */
+//	private String getImplName(String serviceName) throws Exception{
+//		
+//		java.util.Properties properties = new java.util.Properties();
+//		final String fileName = System.getProperty("application.properties");
+//
+//		java.io.FileInputStream fileInputStream = new java.io.FileInputStream(fileName);
+//
+//		properties.load(fileInputStream);
+//		fileInputStream.close();
+//		return properties.getProperty(serviceName);
+//	}
 		
-		java.util.Properties properties = new java.util.Properties();
-		final String fileName = System.getProperty("application.properties");
-//		java.io.FileInputStream fileInputStream = new java.io.FileInputStream(System.getProperty("application.properties"));
-		java.io.FileInputStream fileInputStream = new java.io.FileInputStream(fileName);
-
-		properties.load(fileInputStream);
-		fileInputStream.close();
-		return properties.getProperty(serviceName);
-	}
-	
-	
-	
-//	/**
-//	 * Validates that the ServiceFactory was able to return service objects
-//	 * @return Returns false if any service object is null, else returns true;
-//	 */
-//	public boolean validate() {
-//		if(this.getClientSvc() == null) 
-//			return false;
-//		if(this.getSessionSvc() == null)
-//			return false;
-//		return true;
-//	}
-//	
-//	/**
-//	 * 
-//	 * @return ClientSvcImpl()	Returns a new Client service implementation. 
-//	 */
-//	public IClientSvc getClientSvc() {
-//		return new ClientSvcImpl();
-//	}
-//	
-//	/**
-//	 * 
-//	 * @return Returns a new Session service implementation.
-//	 */
-//	public ISessionSvc getSessionSvc() {
-//		return new SessionSvcImpl();
-//	}
-	
-	
 
 }

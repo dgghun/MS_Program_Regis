@@ -76,9 +76,9 @@ public class SessionSvcImplTest {
 	public void testFactoryCreateSession() {
 		try {
 			sessionSvc = (ISessionSvc) serviceFactory.getService(ISessionSvc.NAME);
-			System.out.println("\nStarting testFactoryCreateSession");
+			System.out.println("\nStarting testSessionSvcImplCreateSession");
 			assertTrue(sessionSvc.createSession(session));
-			System.out.println("testFactoryCreateSession PASSED");
+			System.out.println("testSessionSvcImplCreateSession PASSED");
 		} catch(ServiceLoadException e) {
 			e.printStackTrace();
 			fail("ServiceLoad exception");
@@ -94,9 +94,9 @@ public class SessionSvcImplTest {
 	@Test
 	public void testFactoryRetrieveSession() {
 		try {
-			System.out.println("\nStarting testFactoryRetrieveSession");
+			System.out.println("\nStarting testSessionSvcImplRetrieveSession");
 			assertTrue(session.equals(sessionSvc.retrieveSession(session)));
-			System.out.println("testFactoryRetrieveSession PASSED");
+			System.out.println("testSessionSvcImplRetrieveSession PASSED");
 		} catch(Exception e) {
 			e.printStackTrace();
 			fail("SessionSvcImpl Exception on stubbed out method");
@@ -109,9 +109,9 @@ public class SessionSvcImplTest {
 	@Test
 	public void testFactoryUpdateSession() {
 		try {
-			System.out.println("Starting testFactoryUpdateSession");
+			System.out.println("\nStarting testSessionSvcImplUpdateSession");
 			assertTrue(sessionSvc.updateSession(session));
-			System.out.println("testFactoryUpdateSession PASSED");
+			System.out.println("testSessionSvcImplUpdateSession PASSED");
 		}catch(Exception e) {
 			e.printStackTrace();
 			fail("SessionSvcImpl Exception on stubbed out method");

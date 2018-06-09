@@ -6,10 +6,11 @@ import org.junit.runners.Suite.SuiteClasses;
 
 import com.sessionnotes.model.service.clientservice.ClientSvcImplTest;
 import com.sessionnotes.model.service.factory.ServiceFactoryTest;
+import com.sessionnotes.model.service.manager.PropertyManagerTest;
 import com.sessionnotes.model.service.sessionservice.SessionSvcImplTest;
 
 @RunWith(Suite.class)
-@SuiteClasses({ ClientSvcImplTest.class, SessionSvcImplTest.class, ServiceFactoryTest.class })
+@SuiteClasses({ ClientSvcImplTest.class, SessionSvcImplTest.class, ServiceFactoryTest.class, PropertyManagerTest.class })
 public class AllServiceTests {
 
 }
