@@ -5,6 +5,7 @@ package com.sessionnotes.model.domain;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.GregorianCalendar;
 
 /**
  * <h1>Client</h1>
@@ -30,6 +31,7 @@ public class Client implements Serializable{
 	private short fee;
 	private ArrayList<Name> secondaryClients;
 	private InsuranceCard insuranceCard;
+	private GregorianCalendar birthdate;
 
 	private final byte mMIN_ID_NUMBER = 0;
 	private final short mMIN_FEE_AMOUNT = 0;
@@ -61,6 +63,35 @@ public class Client implements Serializable{
 		this.secondaryClients = secondaryClients;
 		this.insuranceCard = insuranceCard;
 	}
+	
+	
+	
+
+	/**
+	 * @param idNumber
+	 * @param name
+	 * @param phoneNumber
+	 * @param address
+	 * @param email
+	 * @param fee
+	 * @param secondaryClients
+	 * @param insuranceCard
+	 * @param birthdate
+	 */
+	public Client(int idNumber, Name name, String phoneNumber, Address address, String email, short fee,
+			ArrayList<Name> secondaryClients, InsuranceCard insuranceCard, GregorianCalendar birthdate) {
+		super();
+		this.idNumber = idNumber;
+		this.name = name;
+		this.phoneNumber = phoneNumber;
+		this.address = address;
+		this.email = email;
+		this.fee = fee;
+		this.secondaryClients = secondaryClients;
+		this.insuranceCard = insuranceCard;
+		this.birthdate = birthdate;
+	}
+
 
 	/**
 	 * Validates that the objects data members are not null.
@@ -207,6 +238,22 @@ public class Client implements Serializable{
 		this.insuranceCard = insuranceCard;
 	}
 
+	/**
+	 * @return the birthdate
+	 */
+	public GregorianCalendar getBirthdate() {
+		return birthdate;
+	}
+
+
+	/**
+	 * @param birthdate the birthdate to set
+	 */
+	public void setBirthdate(GregorianCalendar birthdate) {
+		this.birthdate = birthdate;
+	}
+
+
 	/* (non-Javadoc)
 	 * @see java.lang.Object#hashCode()
 	 */
@@ -215,6 +262,7 @@ public class Client implements Serializable{
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((address == null) ? 0 : address.hashCode());
+		result = prime * result + ((birthdate == null) ? 0 : birthdate.hashCode());
 		result = prime * result + ((email == null) ? 0 : email.hashCode());
 		result = prime * result + fee;
 		result = prime * result + idNumber;
@@ -243,6 +291,11 @@ public class Client implements Serializable{
 			if (other.address != null)
 				return false;
 		} else if (!address.equals(other.address))
+			return false;
+		if (birthdate == null) {
+			if (other.birthdate != null)
+				return false;
+		} else if (!birthdate.equals(other.birthdate))
 			return false;
 		if (email == null) {
 			if (other.email != null)
@@ -280,16 +333,14 @@ public class Client implements Serializable{
 		return true;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
+	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
 	public String toString() {
 		return "Client [idNumber=" + idNumber + ", name=" + name + ", phoneNumber=" + phoneNumber + ", address="
 				+ address + ", email=" + email + ", fee=" + fee + ", secondaryClients=" + secondaryClients
-				+ ", insuranceCard=" + insuranceCard + "]";
+				+ ", insuranceCard=" + insuranceCard + ", birthdate=" + birthdate + "]";
 	}
 
 }

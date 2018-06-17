@@ -15,7 +15,8 @@ public class Address implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private String streetAddress;
+	private String streetAddress1;
+	private String streetAddress2;
 	private String zipCode;
 	private String city;
 	private String state;
@@ -34,11 +35,31 @@ public class Address implements Serializable{
 	 * @param state
 	 */
 	public Address(String streetAddress, String zipCode, String city, String state) {
-		this.streetAddress = streetAddress;
+		this.streetAddress1 = streetAddress;
+		this.zipCode = zipCode;
+		this.city = city;
+		this.state = state;
+		this.streetAddress2 = "";
+	}
+	
+	
+
+	/**
+	 * @param streetAddress1
+	 * @param streetAddress2
+	 * @param zipCode
+	 * @param city
+	 * @param state
+	 */
+	public Address(String streetAddress1, String streetAddress2, String zipCode, String city, String state) {
+		super();
+		this.streetAddress1 = streetAddress1;
+		this.streetAddress2 = streetAddress2;
 		this.zipCode = zipCode;
 		this.city = city;
 		this.state = state;
 	}
+
 
 	/**
 	 * Validates that the objects data members are not null.
@@ -46,7 +67,7 @@ public class Address implements Serializable{
 	 * @return Boolean This returns true if the object attributes are not null/empty;
 	 */
 	public Boolean validate() {
-		if (streetAddress == null)
+		if (streetAddress1 == null)
 			return false;
 		if (zipCode == null)
 			return false;
@@ -60,17 +81,33 @@ public class Address implements Serializable{
 	/**
 	 * @return the streetAddress
 	 */
-	public String getStreetAddress() {
-		return streetAddress;
+	public String getStreetAddress1() {
+		return streetAddress1;
 	}
 
 	/**
 	 * @param streetAddress
 	 *            the streetAddress to set
 	 */
-	public void setStreetAddress(String streetAddress) {
-		this.streetAddress = streetAddress;
+	public void setStreetAddress1(String streetAddress) {
+		this.streetAddress1 = streetAddress;
 	}
+
+	/**
+	 * @return the streetAddress2
+	 */
+	public String getStreetAddress2() {
+		return streetAddress2;
+	}
+
+
+	/**
+	 * @param streetAddress2 the streetAddress2 to set
+	 */
+	public void setStreetAddress2(String streetAddress2) {
+		this.streetAddress2 = streetAddress2;
+	}
+
 
 	/**
 	 * @return the zipCode
@@ -126,7 +163,8 @@ public class Address implements Serializable{
 		int result = 1;
 		result = prime * result + ((city == null) ? 0 : city.hashCode());
 		result = prime * result + ((state == null) ? 0 : state.hashCode());
-		result = prime * result + ((streetAddress == null) ? 0 : streetAddress.hashCode());
+		result = prime * result + ((streetAddress1 == null) ? 0 : streetAddress1.hashCode());
+		result = prime * result + ((streetAddress2 == null) ? 0 : streetAddress2.hashCode());
 		result = prime * result + ((zipCode == null) ? 0 : zipCode.hashCode());
 		return result;
 	}
@@ -153,10 +191,15 @@ public class Address implements Serializable{
 				return false;
 		} else if (!state.equals(other.state))
 			return false;
-		if (streetAddress == null) {
-			if (other.streetAddress != null)
+		if (streetAddress1 == null) {
+			if (other.streetAddress1 != null)
 				return false;
-		} else if (!streetAddress.equals(other.streetAddress))
+		} else if (!streetAddress1.equals(other.streetAddress1))
+			return false;
+		if (streetAddress2 == null) {
+			if (other.streetAddress2 != null)
+				return false;
+		} else if (!streetAddress2.equals(other.streetAddress2))
 			return false;
 		if (zipCode == null) {
 			if (other.zipCode != null)
@@ -166,15 +209,13 @@ public class Address implements Serializable{
 		return true;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
+	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
 	public String toString() {
-		return "Address [streetAddress=" + streetAddress + ", zipCode=" + zipCode + ", city=" + city + ", state="
-				+ state + "]";
+		return "Address [streetAddress1=" + streetAddress1 + ", streetAddress2=" + streetAddress2 + ", zipCode="
+				+ zipCode + ", city=" + city + ", state=" + state + "]";
 	}
 
 }
