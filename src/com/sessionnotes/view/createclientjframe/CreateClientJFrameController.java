@@ -65,7 +65,6 @@ public class CreateClientJFrameController implements ActionListener{
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		System.out.println("CreateClientJFrameController: action performed method start");
 		
 		if(e.getSource().equals(clientJFrame.getSaveClientBtn()))
 			saveClientBtn_actionPerformed(e);
@@ -89,7 +88,7 @@ public class CreateClientJFrameController implements ActionListener{
 
 				//Check required input fields before creating Client
 				if(checkRequiredInput()) {				
-					Client client = getClientFromUserInput();	// populate Client with text fields
+					Client client = getClientFormInput();	// populate Client with text fields
 					SessionNotesManager sessionNotesManager = SessionNotesManager.getInstance();
 
 					//If session business manager returns with no errors, try to persist new client
@@ -145,12 +144,25 @@ public class CreateClientJFrameController implements ActionListener{
 	
 	
 	/**
+	 * If the button is pressed then this method will copy
+	 * the clients name, address, phone and birth date to the 
+	 * insured area of the form.
 	 * 
 	 * @param e
 	 */
 	private void chkBoxCopyClientInfo_actionPerformed(ActionEvent e) {
-		JOptionPane.showMessageDialog(clientJFrame, "No working yet!","Copy client info CheckBox clicked", JOptionPane.NO_OPTION);
-
+			clientJFrame.getJTxtField_InsuredFirstName().setText(clientJFrame.getJTxtField_clientFirstName().getText());
+			clientJFrame.getJTxtField_InsuredLastName().setText(clientJFrame.getJTxtField_clientLastName().getText());
+			clientJFrame.getJTxtField_InsuredMiddleName().setText(clientJFrame.getJTxtField_clientMiddleName().getText());
+			clientJFrame.getJTxtField_InsuredAddress1().setText(clientJFrame.getJTxtField_clientAddress1().getText());
+			clientJFrame.getJTxtField_InsuredAddress2().setText(clientJFrame.getJTxtField_clientAddress2().getText());
+			clientJFrame.getJTxtField_InsuredCity().setText(clientJFrame.getJTxtField_clientCity().getText());
+			clientJFrame.getJComBox_InsuredState().setSelectedIndex(clientJFrame.getJComBox_ClientState().getSelectedIndex());
+			clientJFrame.getJTxtField_InsuredZip().setText(clientJFrame.getJTxtField_clientZip().getText());
+			clientJFrame.getJTxtField_InsuredPhone().setText(clientJFrame.getJTxtField_ClientPhone().getText());
+			clientJFrame.getJComBox_InsuredBirthMonth().setSelectedIndex(clientJFrame.getJComBox_ClientBirthMonth().getSelectedIndex());
+			clientJFrame.getJComBox_InsuredBirthDay().setSelectedIndex(clientJFrame.getJComBox_ClientBirthDay().getSelectedIndex());
+			clientJFrame.getJComBox_InsuredBirthYear().setSelectedIndex(clientJFrame.getJComBox_BirthYear().getSelectedIndex());
 	}
 	
 	
@@ -159,23 +171,49 @@ public class CreateClientJFrameController implements ActionListener{
 	 * @return True if the text fields needed contain input.
 	 */
 	private boolean checkRequiredInput() {
-		return (!clientJFrame.getJTxtField_firstName().getText().trim().isEmpty() && 
-				!clientJFrame.getJTxtField_lastName().getText().trim().isEmpty() &&
+		return (!clientJFrame.getJTxtField_clientFirstName().getText().trim().isEmpty() && 
+				!clientJFrame.getJTxtField_clientLastName().getText().trim().isEmpty() &&
 				!clientJFrame.getJTxtField_ClientPhone().getText().trim().isEmpty() &&
-				!clientJFrame.getJTxtField_ClientFee().getText().trim().isEmpty());		
+				!clientJFrame.getJFormatTxtField_ClientFee().getText().trim().isEmpty());		
 	}
+	
+	
+	
+	/**
+	 * Returns a formatted calendar for this application. 
+	 * @param year String numeric number i.e. "2018"
+	 * @param month String English language of the month i.e. "January"
+	 * @param day String numeric value of the day of month i.e. "1"
+	 * @return a GregorianCalendar.
+	 */
+	private GregorianCalendar getFormattedCalenderFromClientForm(String year, String month, String day) {
+		String[] months = new String[] {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
+		int monthInt = 0;
+		
+		// loop to find number value of Enlish month value
+		for(int i = 0; i < months.length; i++) {
+			
+			if(months[i].equals(month)) {
+				monthInt = i + 1;	// set month to 
+				i = months.length +1;	// break loop
+			}
+		}
+		
+		return new GregorianCalendar(Integer.parseInt(year), monthInt, Integer.parseInt(day));
+	}
+	
 	
 	
 	/**
 	 * Method to create a new client with text field user input.
 	 * @return A new Client object populated with user input.
 	 */
-	private Client getClientFromUserInput() {
+	private Client getClientFormInput() {
 		
 		Name clientName = new Name(
-				clientJFrame.getJTxtField_firstName().getText().trim(), 
-				clientJFrame.getJTxtField_lastName().getText().trim(), 
-				clientJFrame.getJTxtField_middleName().getText().trim());
+				clientJFrame.getJTxtField_clientFirstName().getText().trim(), 
+				clientJFrame.getJTxtField_clientLastName().getText().trim(), 
+				clientJFrame.getJTxtField_clientMiddleName().getText().trim());
 		Name secondaryClientName = new Name(
 				clientJFrame.getJTxtField_SecondaryFirstName().getText().trim(), 
 				clientJFrame.getJTxtField_SecondaryLastName().getText().trim(), 
@@ -185,37 +223,31 @@ public class CreateClientJFrameController implements ActionListener{
 				clientJFrame.getJTxtField_InsuredLastName().getText().trim(), 
 				clientJFrame.getJTxtField_InsuredMiddleName().getText().trim());
 		Address clientAddress = new Address(	
-				clientJFrame.getJTxtField_Address1().getText().trim(),
-				clientJFrame.getJTxtField_Address2().getText().trim(),
-				clientJFrame.getJTxtField_Zip().getText().trim(),
-				clientJFrame.getJTxtField_City().getText().trim(),
-				clientJFrame.getJTxtField_State().getText().trim());
+				clientJFrame.getJTxtField_clientAddress1().getText().trim(),
+				clientJFrame.getJTxtField_clientAddress2().getText().trim(),
+				clientJFrame.getJTxtField_clientZip().getText().trim(),
+				clientJFrame.getJTxtField_clientCity().getText().trim(),
+				String.valueOf(clientJFrame.getJComBox_ClientState().getSelectedItem()));
 		Address insuredAddress = new Address(
-				clientJFrame.getJTxtField_InsuredAddress1().getText(),
-				clientJFrame.getJTxtField_InsuredAddress2().getText(),
-				clientJFrame.getJTxtField_InsuredZip().getText(),
-				clientJFrame.getJTxtField_InsuredCity().getText(),
-				clientJFrame.getJTxtField_InsuredState().getText());
+				clientJFrame.getJTxtField_InsuredAddress1().getText().trim(),
+				clientJFrame.getJTxtField_InsuredAddress2().getText().trim(),
+				clientJFrame.getJTxtField_InsuredZip().getText().trim(),
+				clientJFrame.getJTxtField_InsuredCity().getText().trim(),
+				String.valueOf(clientJFrame.getJComBox_InsuredState().getSelectedItem()).trim());
 		
 		// Check if birthday is entered, if not, create an empty one.
 		GregorianCalendar clientBirthdate;
-		String clientYear = clientJFrame.getJTxtField_BirthYear().getText().trim();
-		String clientMonth = clientJFrame.getJTxtFIeld_BirthMonth().getText().trim();
-		String clientDay = clientJFrame.getJTxtField_BirthDay().getText().trim();
-		if(clientYear.isEmpty() || clientMonth.isEmpty() || clientDay.isEmpty())
-			clientBirthdate = new GregorianCalendar();
-		else
-			clientBirthdate = new GregorianCalendar(Integer.parseInt(clientYear), Integer.parseInt(clientMonth), Integer.parseInt(clientDay));
+		String clientYear = String.valueOf(clientJFrame.getJComBox_BirthYear().getSelectedItem()).trim();
+		String clientMonth = String.valueOf(clientJFrame.getJComBox_ClientBirthMonth().getSelectedItem()).trim();
+		String clientDay = String.valueOf(clientJFrame.getJComBox_ClientBirthDay().getSelectedItem()).trim();
+		clientBirthdate = getFormattedCalenderFromClientForm(clientYear, clientMonth, clientDay);
 		
 		// Check if birthday is entered, if not, create an empty one.
 		GregorianCalendar insuredBirthdate;
-		String insuredYear = clientJFrame.getJTxtField_InsuredBirthYear().getText().trim();
-		String insuredMonth = clientJFrame.getJTxtField_InsuredBirthMonth().getText().trim();
-		String insuredDay = clientJFrame.getJTxtField_InsuredBirthDay().getText().trim();
-		if(insuredYear.isEmpty() || insuredMonth.isEmpty() || insuredDay.isEmpty())
-			insuredBirthdate = new GregorianCalendar();
-		else
-			insuredBirthdate = new GregorianCalendar(Integer.parseInt(insuredYear), Integer.parseInt(insuredMonth), Integer.parseInt(insuredDay));
+		String insuredYear = String.valueOf(clientJFrame.getJComBox_InsuredBirthYear().getSelectedItem()).trim();
+		String insuredMonth = String.valueOf(clientJFrame.getJComBox_InsuredBirthMonth().getSelectedItem()).trim();
+		String insuredDay = String.valueOf(clientJFrame.getJComBox_InsuredBirthDay().getSelectedItem()).trim();
+		insuredBirthdate = getFormattedCalenderFromClientForm(insuredYear, insuredMonth, insuredDay);
 		
 		InsuranceCard insurance = new InsuranceCard(
 				clientJFrame.getJTxtField_insuranceType().getText().trim(),
@@ -229,7 +261,7 @@ public class CreateClientJFrameController implements ActionListener{
 		ArrayList<Name> secondaryClients = new ArrayList<Name>();
 		secondaryClients.add(secondaryClientName);
 		
-		short fee = Short.parseShort(clientJFrame.getJTxtField_ClientFee().getText().trim());
+		short fee = Short.parseShort(clientJFrame.getJFormatTxtField_ClientFee().getText().trim());
 		String clientPhone = clientJFrame.getJTxtField_ClientPhone().getText().trim();
 		String clientEmail = clientJFrame.getJTxtField_ClientEmail().getText().trim();
 		
