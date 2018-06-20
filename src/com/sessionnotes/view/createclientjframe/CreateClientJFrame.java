@@ -15,6 +15,17 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SpringLayout;
 import javax.swing.border.EmptyBorder;
+import javax.swing.SwingConstants;
+import javax.swing.JSpinner;
+import javax.swing.SpinnerListModel;
+import javax.swing.SpinnerNumberModel;
+import javax.swing.JComboBox;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.SpinnerDateModel;
+import java.util.Date;
+import java.util.GregorianCalendar;
+import java.util.Arrays;
+import java.util.Calendar;
 
 /**
  * 
@@ -61,12 +72,12 @@ public class CreateClientJFrame extends JFrame {
 	private JTextField JTxtField_Address1;
 	private JTextField JTxtField_Address2;
 	private JTextField JTxtField_City;
-	private JTextField JTxtField_State;
+	private JComboBox JComBox_ClientState;
 	private JTextField JTxtField_Zip;
 	private JLabel JLbl_ClientBirthDate;
-	private JTextField JTxtFIeld_BirthMonth;
-	private JTextField JTxtField_BirthDay;
-	private JTextField JTxtField_BirthYear;
+	private JComboBox JComBox_ClientBirthMonth;
+	private JComboBox JComBox_ClientBirthDay;
+	private JComboBox JComBox_BirthYear;
 	private JLabel JLbl_ClientPhone;
 	private JTextField JTxtField_ClientPhone;
 	private JLabel JLbl_ClientEmail;
@@ -98,6 +109,12 @@ public class CreateClientJFrame extends JFrame {
 	private JTextField JTxtField_InsuredBirthYear;
 	private JLabel JLbl_InsuredPhone;
 	private JTextField JTxtField_InsuredPhone;
+	private JLabel JLbl_ClientStreet;
+	private JLabel JLbl_ClientAptSuite;
+	private JLabel JLbl_ClientCity;
+	private JLabel JLbl_ClientState;
+	private JLabel JLbl_ClientZip;
+	private JLabel lblNewLabel;
 	
 	
 
@@ -150,7 +167,7 @@ public class CreateClientJFrame extends JFrame {
 		SpringLayout sl_JPanel_ClientInfo = new SpringLayout();
 		JPanel_ClientInfo.setLayout(sl_JPanel_ClientInfo);
 		
-		JLabel JLbl_ClientName = new JLabel("Client Name");
+		JLabel JLbl_ClientName = new JLabel("Client - First Name");
 		sl_JPanel_ClientInfo.putConstraint(SpringLayout.WEST, JLbl_ClientName, 10, SpringLayout.WEST, JPanel_ClientInfo);
 		JLbl_ClientName.setFont(new Font("Tahoma", Font.BOLD, 11));
 		JPanel_ClientInfo.add(JLbl_ClientName);
@@ -171,9 +188,9 @@ public class CreateClientJFrame extends JFrame {
 		JTxtField_lastName.setColumns(10);
 		
 		JTxtField_middleName = new JTextField();
-		JTxtField_middleName.setToolTipText("Middle Name");
 		sl_JPanel_ClientInfo.putConstraint(SpringLayout.WEST, JTxtField_middleName, 6, SpringLayout.EAST, JTxtField_lastName);
-		sl_JPanel_ClientInfo.putConstraint(SpringLayout.EAST, JTxtField_middleName, -20, SpringLayout.EAST, JPanel_ClientInfo);
+		sl_JPanel_ClientInfo.putConstraint(SpringLayout.EAST, JTxtField_middleName, -10, SpringLayout.EAST, JPanel_ClientInfo);
+		JTxtField_middleName.setToolTipText("Middle Name");
 		JPanel_ClientInfo.add(JTxtField_middleName);
 		JTxtField_middleName.setColumns(10);
 		
@@ -184,114 +201,109 @@ public class CreateClientJFrame extends JFrame {
 		JPanel_ClientInfo.add(JLbl_ClientAddress);
 		
 		JTxtField_Address1 = new JTextField();
-		JTxtField_Address1.setToolTipText("Address 1");
-		sl_JPanel_ClientInfo.putConstraint(SpringLayout.SOUTH, JTxtField_middleName, -26, SpringLayout.NORTH, JTxtField_Address1);
-		sl_JPanel_ClientInfo.putConstraint(SpringLayout.SOUTH, JTxtField_lastName, -26, SpringLayout.NORTH, JTxtField_Address1);
+		sl_JPanel_ClientInfo.putConstraint(SpringLayout.EAST, JTxtField_Address1, -10, SpringLayout.EAST, JPanel_ClientInfo);
 		sl_JPanel_ClientInfo.putConstraint(SpringLayout.SOUTH, JLbl_ClientAddress, -6, SpringLayout.NORTH, JTxtField_Address1);
-		sl_JPanel_ClientInfo.putConstraint(SpringLayout.WEST, JTxtField_Address1, 10, SpringLayout.WEST, JPanel_ClientInfo);
-		sl_JPanel_ClientInfo.putConstraint(SpringLayout.EAST, JTxtField_Address1, 388, SpringLayout.WEST, JPanel_ClientInfo);
+		sl_JPanel_ClientInfo.putConstraint(SpringLayout.NORTH, JTxtField_Address1, 77, SpringLayout.NORTH, JPanel_ClientInfo);
+		JTxtField_Address1.setToolTipText("Address 1");
 		JPanel_ClientInfo.add(JTxtField_Address1);
 		JTxtField_Address1.setColumns(10);
 		
 		JTxtField_Address2 = new JTextField();
-		JTxtField_Address2.setToolTipText("Address 2");
+		sl_JPanel_ClientInfo.putConstraint(SpringLayout.WEST, JTxtField_Address2, 61, SpringLayout.WEST, JPanel_ClientInfo);
 		sl_JPanel_ClientInfo.putConstraint(SpringLayout.SOUTH, JTxtField_Address2, -174, SpringLayout.SOUTH, JPanel_ClientInfo);
-		sl_JPanel_ClientInfo.putConstraint(SpringLayout.SOUTH, JTxtField_Address1, -6, SpringLayout.NORTH, JTxtField_Address2);
-		sl_JPanel_ClientInfo.putConstraint(SpringLayout.WEST, JTxtField_Address2, 10, SpringLayout.WEST, JPanel_ClientInfo);
-		sl_JPanel_ClientInfo.putConstraint(SpringLayout.EAST, JTxtField_Address2, 388, SpringLayout.WEST, JPanel_ClientInfo);
+		sl_JPanel_ClientInfo.putConstraint(SpringLayout.EAST, JTxtField_Address2, -10, SpringLayout.EAST, JPanel_ClientInfo);
+		JTxtField_Address2.setToolTipText("Address 2");
 		JPanel_ClientInfo.add(JTxtField_Address2);
 		JTxtField_Address2.setColumns(10);
 		
 		JTxtField_City = new JTextField();
+		sl_JPanel_ClientInfo.putConstraint(SpringLayout.SOUTH, JTxtField_City, -148, SpringLayout.SOUTH, JPanel_ClientInfo);
+		sl_JPanel_ClientInfo.putConstraint(SpringLayout.EAST, JTxtField_City, -202, SpringLayout.EAST, JPanel_ClientInfo);
 		JTxtField_City.setToolTipText("City");
-		sl_JPanel_ClientInfo.putConstraint(SpringLayout.NORTH, JTxtField_City, 6, SpringLayout.SOUTH, JTxtField_Address2);
-		sl_JPanel_ClientInfo.putConstraint(SpringLayout.WEST, JTxtField_City, 10, SpringLayout.WEST, JPanel_ClientInfo);
 		JPanel_ClientInfo.add(JTxtField_City);
 		JTxtField_City.setColumns(10);
 		
-		JTxtField_State = new JTextField();
-		JTxtField_State.setToolTipText("State");
-		sl_JPanel_ClientInfo.putConstraint(SpringLayout.WEST, JTxtField_State, 122, SpringLayout.WEST, JPanel_ClientInfo);
-		sl_JPanel_ClientInfo.putConstraint(SpringLayout.EAST, JTxtField_City, -6, SpringLayout.WEST, JTxtField_State);
-		sl_JPanel_ClientInfo.putConstraint(SpringLayout.NORTH, JTxtField_State, 6, SpringLayout.SOUTH, JTxtField_Address2);
-		JPanel_ClientInfo.add(JTxtField_State);
-		JTxtField_State.setColumns(10);
+		JComBox_ClientState = new JComboBox();
+		sl_JPanel_ClientInfo.putConstraint(SpringLayout.NORTH, JComBox_ClientState, 6, SpringLayout.SOUTH, JTxtField_Address2);
+		JComBox_ClientState.setModel(new DefaultComboBoxModel(new String[] {"AL", "AK", "AZ", "AR", "CA", "CO", "CT", "DE", "FL", "GA", "HI", "ID", "IL", "IN", "IA", "KS", "KY", "LA", "ME", "MD", "MA", "MI", "MN", "MS", "MO", "MT", "NE", "NV", "NH", "NJ", "NM", "NY", "NC", "ND", "OH", "OK", "OR", "PA", "RI", "SC", "SD", "TN", "TX", "UT", "VT", "VA", "WA", "WV", "WI", "WY"}));
+		JComBox_ClientState.setToolTipText("State");
+		JPanel_ClientInfo.add(JComBox_ClientState);
 		
 		JTxtField_Zip = new JTextField();
-		JTxtField_Zip.setToolTipText("Zip Code");
-		sl_JPanel_ClientInfo.putConstraint(SpringLayout.WEST, JTxtField_Zip, 214, SpringLayout.WEST, JPanel_ClientInfo);
-		sl_JPanel_ClientInfo.putConstraint(SpringLayout.EAST, JTxtField_State, -6, SpringLayout.WEST, JTxtField_Zip);
 		sl_JPanel_ClientInfo.putConstraint(SpringLayout.NORTH, JTxtField_Zip, 6, SpringLayout.SOUTH, JTxtField_Address2);
+		sl_JPanel_ClientInfo.putConstraint(SpringLayout.WEST, JTxtField_Zip, -80, SpringLayout.EAST, JPanel_ClientInfo);
+		sl_JPanel_ClientInfo.putConstraint(SpringLayout.EAST, JTxtField_Zip, 0, SpringLayout.EAST, JTxtField_middleName);
+		JTxtField_Zip.setToolTipText("Zip Code");
 		JPanel_ClientInfo.add(JTxtField_Zip);
 		JTxtField_Zip.setColumns(10);
 		
 		JLbl_ClientBirthDate = new JLabel("Client Birth Date");
-		sl_JPanel_ClientInfo.putConstraint(SpringLayout.WEST, JLbl_ClientBirthDate, 10, SpringLayout.WEST, JPanel_ClientInfo);
+		sl_JPanel_ClientInfo.putConstraint(SpringLayout.WEST, JLbl_ClientBirthDate, 0, SpringLayout.WEST, JLbl_ClientName);
 		JLbl_ClientBirthDate.setFont(new Font("Tahoma", Font.BOLD, 11));
 		JPanel_ClientInfo.add(JLbl_ClientBirthDate);
 		
-		JTxtFIeld_BirthMonth = new JTextField();
-		JTxtFIeld_BirthMonth.setToolTipText("Month");
-		sl_JPanel_ClientInfo.putConstraint(SpringLayout.WEST, JTxtFIeld_BirthMonth, 10, SpringLayout.WEST, JPanel_ClientInfo);
-		sl_JPanel_ClientInfo.putConstraint(SpringLayout.SOUTH, JLbl_ClientBirthDate, -6, SpringLayout.NORTH, JTxtFIeld_BirthMonth);
-		JPanel_ClientInfo.add(JTxtFIeld_BirthMonth);
-		JTxtFIeld_BirthMonth.setColumns(10);
+		JComBox_ClientBirthMonth = new JComboBox();
+		sl_JPanel_ClientInfo.putConstraint(SpringLayout.NORTH, JComBox_ClientBirthMonth, -3, SpringLayout.NORTH, JLbl_ClientBirthDate);
+		sl_JPanel_ClientInfo.putConstraint(SpringLayout.WEST, JComBox_ClientBirthMonth, 6, SpringLayout.EAST, JLbl_ClientBirthDate);
+		sl_JPanel_ClientInfo.putConstraint(SpringLayout.EAST, JComBox_ClientBirthMonth, -13, SpringLayout.EAST, JTxtField_City);
+		JComBox_ClientBirthMonth.setModel(new DefaultComboBoxModel(new String[] {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"}));
+		JComBox_ClientBirthMonth.setToolTipText("Month");
+		JPanel_ClientInfo.add(JComBox_ClientBirthMonth);
 		
-		JTxtField_BirthDay = new JTextField();
-		JTxtField_BirthDay.setToolTipText("Day");
-		sl_JPanel_ClientInfo.putConstraint(SpringLayout.EAST, JTxtFIeld_BirthMonth, -6, SpringLayout.WEST, JTxtField_BirthDay);
-		JPanel_ClientInfo.add(JTxtField_BirthDay);
-		JTxtField_BirthDay.setColumns(10);
+		JComBox_ClientBirthDay = new JComboBox();
+		sl_JPanel_ClientInfo.putConstraint(SpringLayout.NORTH, JComBox_ClientBirthDay, -3, SpringLayout.NORTH, JLbl_ClientBirthDate);
+		sl_JPanel_ClientInfo.putConstraint(SpringLayout.WEST, JComBox_ClientBirthDay, 6, SpringLayout.EAST, JComBox_ClientBirthMonth);
+		sl_JPanel_ClientInfo.putConstraint(SpringLayout.EAST, JComBox_ClientBirthDay, 56, SpringLayout.EAST, JComBox_ClientBirthMonth);
+		JComBox_ClientBirthDay.setModel(new DefaultComboBoxModel(new String[] {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31"}));
+		JComBox_ClientBirthDay.setToolTipText("Day");
+		JPanel_ClientInfo.add(JComBox_ClientBirthDay);
 		
-		JTxtField_BirthYear = new JTextField();
-		JTxtField_BirthYear.setToolTipText("Year");
-		sl_JPanel_ClientInfo.putConstraint(SpringLayout.NORTH, JTxtField_BirthYear, 0, SpringLayout.NORTH, JTxtFIeld_BirthMonth);
-		sl_JPanel_ClientInfo.putConstraint(SpringLayout.WEST, JTxtField_BirthYear, 6, SpringLayout.EAST, JTxtField_BirthDay);
-		JPanel_ClientInfo.add(JTxtField_BirthYear);
-		JTxtField_BirthYear.setColumns(10);
+		JComBox_BirthYear = new JComboBox();
+		sl_JPanel_ClientInfo.putConstraint(SpringLayout.NORTH, JComBox_BirthYear, -3, SpringLayout.NORTH, JLbl_ClientBirthDate);
+		sl_JPanel_ClientInfo.putConstraint(SpringLayout.WEST, JComBox_BirthYear, 6, SpringLayout.EAST, JComBox_ClientBirthDay);
+		sl_JPanel_ClientInfo.putConstraint(SpringLayout.EAST, JComBox_BirthYear, -85, SpringLayout.EAST, JPanel_ClientInfo);
+		JComBox_BirthYear.setModel(new DefaultComboBoxModel(getYearsFromCurrent()));	//My code to get an array of past years
+		JComBox_BirthYear.setToolTipText("Year");
+		JPanel_ClientInfo.add(JComBox_BirthYear);
 		
 		JLbl_ClientPhone = new JLabel("Client Phone");
+		sl_JPanel_ClientInfo.putConstraint(SpringLayout.SOUTH, JLbl_ClientBirthDate, -17, SpringLayout.NORTH, JLbl_ClientPhone);
 		sl_JPanel_ClientInfo.putConstraint(SpringLayout.WEST, JLbl_ClientPhone, 10, SpringLayout.WEST, JPanel_ClientInfo);
-		sl_JPanel_ClientInfo.putConstraint(SpringLayout.SOUTH, JTxtFIeld_BirthMonth, -6, SpringLayout.NORTH, JLbl_ClientPhone);
 		JLbl_ClientPhone.setFont(new Font("Tahoma", Font.BOLD, 11));
 		JPanel_ClientInfo.add(JLbl_ClientPhone);
 		
 		JTxtField_ClientPhone = new JTextField();
+		sl_JPanel_ClientInfo.putConstraint(SpringLayout.WEST, JTxtField_ClientPhone, 10, SpringLayout.WEST, JPanel_ClientInfo);
 		JTxtField_ClientPhone.setToolTipText("###-###-####");
 		sl_JPanel_ClientInfo.putConstraint(SpringLayout.SOUTH, JLbl_ClientPhone, -6, SpringLayout.NORTH, JTxtField_ClientPhone);
-		sl_JPanel_ClientInfo.putConstraint(SpringLayout.EAST, JTxtField_ClientPhone, 0, SpringLayout.EAST, JTxtField_City);
-		sl_JPanel_ClientInfo.putConstraint(SpringLayout.WEST, JTxtField_ClientPhone, 10, SpringLayout.WEST, JPanel_ClientInfo);
 		JPanel_ClientInfo.add(JTxtField_ClientPhone);
 		JTxtField_ClientPhone.setColumns(10);
 		
 		JLbl_ClientEmail = new JLabel("Client Email");
 		sl_JPanel_ClientInfo.putConstraint(SpringLayout.WEST, JLbl_ClientEmail, 42, SpringLayout.EAST, JLbl_ClientPhone);
-		sl_JPanel_ClientInfo.putConstraint(SpringLayout.WEST, JTxtField_BirthDay, 0, SpringLayout.WEST, JLbl_ClientEmail);
-		sl_JPanel_ClientInfo.putConstraint(SpringLayout.SOUTH, JTxtField_BirthDay, -6, SpringLayout.NORTH, JLbl_ClientEmail);
-		sl_JPanel_ClientInfo.putConstraint(SpringLayout.EAST, JTxtField_BirthDay, 86, SpringLayout.WEST, JLbl_ClientEmail);
 		sl_JPanel_ClientInfo.putConstraint(SpringLayout.NORTH, JLbl_ClientEmail, 0, SpringLayout.NORTH, JLbl_ClientPhone);
 		JLbl_ClientEmail.setFont(new Font("Tahoma", Font.BOLD, 11));
 		JPanel_ClientInfo.add(JLbl_ClientEmail);
 		
 		JTxtField_ClientEmail = new JTextField();
+		sl_JPanel_ClientInfo.putConstraint(SpringLayout.WEST, JTxtField_ClientEmail, 122, SpringLayout.WEST, JPanel_ClientInfo);
+		sl_JPanel_ClientInfo.putConstraint(SpringLayout.EAST, JTxtField_ClientEmail, -121, SpringLayout.EAST, JPanel_ClientInfo);
+		sl_JPanel_ClientInfo.putConstraint(SpringLayout.EAST, JTxtField_ClientPhone, -6, SpringLayout.WEST, JTxtField_ClientEmail);
 		JTxtField_ClientEmail.setToolTipText("johnD@abc.com");
 		sl_JPanel_ClientInfo.putConstraint(SpringLayout.NORTH, JTxtField_ClientEmail, 6, SpringLayout.SOUTH, JLbl_ClientEmail);
-		sl_JPanel_ClientInfo.putConstraint(SpringLayout.WEST, JTxtField_ClientEmail, 6, SpringLayout.EAST, JTxtField_ClientPhone);
 		JPanel_ClientInfo.add(JTxtField_ClientEmail);
 		JTxtField_ClientEmail.setColumns(10);
 		
 		JLbl_ClientFee = new JLabel("Client Fee");
 		sl_JPanel_ClientInfo.putConstraint(SpringLayout.NORTH, JLbl_ClientFee, 0, SpringLayout.NORTH, JLbl_ClientPhone);
-		sl_JPanel_ClientInfo.putConstraint(SpringLayout.WEST, JLbl_ClientFee, 71, SpringLayout.EAST, JLbl_ClientEmail);
 		JLbl_ClientFee.setFont(new Font("Tahoma", Font.BOLD, 11));
 		JPanel_ClientInfo.add(JLbl_ClientFee);
 		
 		JTxtField_ClientFee = new JTextField();
-		JTxtField_ClientFee.setToolTipText("123");
-		sl_JPanel_ClientInfo.putConstraint(SpringLayout.EAST, JTxtField_ClientEmail, -6, SpringLayout.WEST, JTxtField_ClientFee);
 		sl_JPanel_ClientInfo.putConstraint(SpringLayout.NORTH, JTxtField_ClientFee, 6, SpringLayout.SOUTH, JLbl_ClientFee);
-		sl_JPanel_ClientInfo.putConstraint(SpringLayout.WEST, JTxtField_ClientFee, 258, SpringLayout.WEST, JPanel_ClientInfo);
-		sl_JPanel_ClientInfo.putConstraint(SpringLayout.EAST, JTxtField_ClientFee, 388, SpringLayout.WEST, JPanel_ClientInfo);
+		sl_JPanel_ClientInfo.putConstraint(SpringLayout.WEST, JLbl_ClientFee, 0, SpringLayout.WEST, JTxtField_ClientFee);
+		sl_JPanel_ClientInfo.putConstraint(SpringLayout.EAST, JTxtField_ClientFee, -17, SpringLayout.EAST, JPanel_ClientInfo);
+		JTxtField_ClientFee.setToolTipText("123");
 		JPanel_ClientInfo.add(JTxtField_ClientFee);
 		JTxtField_ClientFee.setColumns(10);
 		
@@ -318,9 +330,9 @@ public class CreateClientJFrame extends JFrame {
 		JTxtField_SecondaryLastName.setColumns(10);
 		
 		JTxtField_SecondaryMiddleName = new JTextField();
+		sl_JPanel_ClientInfo.putConstraint(SpringLayout.SOUTH, JTxtField_SecondaryMiddleName, -11, SpringLayout.SOUTH, JPanel_ClientInfo);
 		JTxtField_SecondaryMiddleName.setToolTipText("Middle Name");
 		sl_JPanel_ClientInfo.putConstraint(SpringLayout.EAST, JTxtField_SecondaryLastName, -6, SpringLayout.WEST, JTxtField_SecondaryMiddleName);
-		sl_JPanel_ClientInfo.putConstraint(SpringLayout.NORTH, JTxtField_SecondaryMiddleName, 26, SpringLayout.SOUTH, JTxtField_ClientFee);
 		sl_JPanel_ClientInfo.putConstraint(SpringLayout.WEST, JTxtField_SecondaryMiddleName, 258, SpringLayout.WEST, JPanel_ClientInfo);
 		sl_JPanel_ClientInfo.putConstraint(SpringLayout.EAST, JTxtField_SecondaryMiddleName, 388, SpringLayout.WEST, JPanel_ClientInfo);
 		JPanel_ClientInfo.add(JTxtField_SecondaryMiddleName);
@@ -331,6 +343,64 @@ public class CreateClientJFrame extends JFrame {
 		sl_contentPane.putConstraint(SpringLayout.WEST, JPanel_InsuranceInfo, 6, SpringLayout.EAST, JPanel_ClientInfo);
 		sl_contentPane.putConstraint(SpringLayout.SOUTH, JPanel_InsuranceInfo, -49, SpringLayout.SOUTH, contentPane);
 		sl_contentPane.putConstraint(SpringLayout.EAST, JPanel_InsuranceInfo, 408, SpringLayout.EAST, JPanel_ClientInfo);
+		
+		JLabel JLbl_ClientFirstName = new JLabel("Last Name");
+		sl_JPanel_ClientInfo.putConstraint(SpringLayout.NORTH, JTxtField_lastName, 6, SpringLayout.SOUTH, JLbl_ClientFirstName);
+		sl_JPanel_ClientInfo.putConstraint(SpringLayout.NORTH, JLbl_ClientFirstName, 0, SpringLayout.NORTH, JLbl_ClientName);
+		sl_JPanel_ClientInfo.putConstraint(SpringLayout.WEST, JLbl_ClientFirstName, 0, SpringLayout.WEST, JTxtField_lastName);
+		JLbl_ClientFirstName.setFont(new Font("Tahoma", Font.BOLD, 11));
+		JPanel_ClientInfo.add(JLbl_ClientFirstName);
+		
+		JLabel JLb_ClientlMiddleName = new JLabel("Middle Name");
+		sl_JPanel_ClientInfo.putConstraint(SpringLayout.WEST, JLb_ClientlMiddleName, 77, SpringLayout.EAST, JLbl_ClientFirstName);
+		sl_JPanel_ClientInfo.putConstraint(SpringLayout.NORTH, JTxtField_middleName, 6, SpringLayout.SOUTH, JLb_ClientlMiddleName);
+		JLb_ClientlMiddleName.setFont(new Font("Tahoma", Font.BOLD, 11));
+		sl_JPanel_ClientInfo.putConstraint(SpringLayout.NORTH, JLb_ClientlMiddleName, 0, SpringLayout.NORTH, JLbl_ClientName);
+		JPanel_ClientInfo.add(JLb_ClientlMiddleName);
+		
+		JLbl_ClientStreet = new JLabel("Street");
+		sl_JPanel_ClientInfo.putConstraint(SpringLayout.WEST, JTxtField_Address1, 6, SpringLayout.EAST, JLbl_ClientStreet);
+		sl_JPanel_ClientInfo.putConstraint(SpringLayout.NORTH, JLbl_ClientStreet, 3, SpringLayout.NORTH, JTxtField_Address1);
+		sl_JPanel_ClientInfo.putConstraint(SpringLayout.WEST, JLbl_ClientStreet, 0, SpringLayout.WEST, JLbl_ClientName);
+		sl_JPanel_ClientInfo.putConstraint(SpringLayout.EAST, JLbl_ClientStreet, -343, SpringLayout.EAST, JPanel_ClientInfo);
+		JLbl_ClientStreet.setHorizontalAlignment(SwingConstants.TRAILING);
+		JLbl_ClientStreet.setFont(new Font("Tahoma", Font.BOLD, 11));
+		JPanel_ClientInfo.add(JLbl_ClientStreet);
+		
+		JLbl_ClientAptSuite = new JLabel("Apt/Ste");
+		sl_JPanel_ClientInfo.putConstraint(SpringLayout.NORTH, JLbl_ClientAptSuite, 3, SpringLayout.NORTH, JTxtField_Address2);
+		sl_JPanel_ClientInfo.putConstraint(SpringLayout.EAST, JLbl_ClientAptSuite, -6, SpringLayout.WEST, JTxtField_Address2);
+		JLbl_ClientAptSuite.setFont(new Font("Tahoma", Font.BOLD, 11));
+		JPanel_ClientInfo.add(JLbl_ClientAptSuite);
+		
+		JLbl_ClientCity = new JLabel("City");
+		sl_JPanel_ClientInfo.putConstraint(SpringLayout.NORTH, JLbl_ClientCity, 12, SpringLayout.SOUTH, JLbl_ClientAptSuite);
+		sl_JPanel_ClientInfo.putConstraint(SpringLayout.EAST, JLbl_ClientCity, -342, SpringLayout.EAST, JPanel_ClientInfo);
+		sl_JPanel_ClientInfo.putConstraint(SpringLayout.WEST, JTxtField_City, 5, SpringLayout.EAST, JLbl_ClientCity);
+		JLbl_ClientCity.setFont(new Font("Tahoma", Font.BOLD, 11));
+		JPanel_ClientInfo.add(JLbl_ClientCity);
+		
+		JLbl_ClientState = new JLabel("State");
+		sl_JPanel_ClientInfo.putConstraint(SpringLayout.WEST, JComBox_ClientState, 6, SpringLayout.EAST, JLbl_ClientState);
+		sl_JPanel_ClientInfo.putConstraint(SpringLayout.NORTH, JLbl_ClientState, 3, SpringLayout.NORTH, JTxtField_City);
+		sl_JPanel_ClientInfo.putConstraint(SpringLayout.WEST, JLbl_ClientState, 6, SpringLayout.EAST, JTxtField_City);
+		sl_JPanel_ClientInfo.putConstraint(SpringLayout.EAST, JLbl_ClientState, -165, SpringLayout.EAST, JPanel_ClientInfo);
+		JLbl_ClientState.setFont(new Font("Tahoma", Font.BOLD, 11));
+		JPanel_ClientInfo.add(JLbl_ClientState);
+		
+		JLbl_ClientZip = new JLabel("Zip");
+		sl_JPanel_ClientInfo.putConstraint(SpringLayout.EAST, JComBox_ClientState, -11, SpringLayout.WEST, JLbl_ClientZip);
+		sl_JPanel_ClientInfo.putConstraint(SpringLayout.NORTH, JLbl_ClientZip, 3, SpringLayout.NORTH, JTxtField_City);
+		sl_JPanel_ClientInfo.putConstraint(SpringLayout.EAST, JLbl_ClientZip, -6, SpringLayout.WEST, JTxtField_Zip);
+		JLbl_ClientZip.setFont(new Font("Tahoma", Font.BOLD, 11));
+		JPanel_ClientInfo.add(JLbl_ClientZip);
+		
+		lblNewLabel = new JLabel(" $");
+		sl_JPanel_ClientInfo.putConstraint(SpringLayout.WEST, JTxtField_ClientFee, -4, SpringLayout.EAST, lblNewLabel);
+		sl_JPanel_ClientInfo.putConstraint(SpringLayout.WEST, lblNewLabel, 5, SpringLayout.EAST, JTxtField_ClientEmail);
+		sl_JPanel_ClientInfo.putConstraint(SpringLayout.SOUTH, lblNewLabel, -29, SpringLayout.NORTH, JTxtField_SecondaryMiddleName);
+		sl_JPanel_ClientInfo.putConstraint(SpringLayout.EAST, lblNewLabel, -99, SpringLayout.EAST, JPanel_ClientInfo);
+		JPanel_ClientInfo.add(lblNewLabel);
 		JPanel_InsuranceInfo.setBackground(new Color(255, 255, 204));
 		contentPane.add(JPanel_InsuranceInfo);
 		SpringLayout sl_JPanel_InsuranceInfo = new SpringLayout();
@@ -529,6 +599,25 @@ public class CreateClientJFrame extends JFrame {
 		this.setVisible(true);	//show frame
 	}
 
+
+	/**
+	 * Method to return the last 120 years from current year.
+	 * Used in JComboBox.
+	 * @return String[] Array of past 120 years. 
+	 */
+	private String[] getYearsFromCurrent() {
+		
+		int MAX_YEARS = 120;
+		String[] years = new String[MAX_YEARS];
+		int currentYear = Calendar.getInstance().get(Calendar.YEAR);
+		
+		for(int i = 0; i < MAX_YEARS; i++) {
+			years[i] = Integer.toString(currentYear - i);
+		}
+		
+		return years;
+	}
+	
 	
 	/**
 	 * 
@@ -645,14 +734,14 @@ public class CreateClientJFrame extends JFrame {
 	 * @return the jTxtField_State
 	 */
 	public JTextField getJTxtField_State() {
-		return JTxtField_State;
+		return JComBox_ClientState;
 	}
 
 	/**
 	 * @param jTxtField_State the jTxtField_State to set
 	 */
 	public void setJTxtField_State(JTextField jTxtField_State) {
-		JTxtField_State = jTxtField_State;
+		JComBox_ClientState = jTxtField_State;
 	}
 
 	/**
@@ -673,42 +762,42 @@ public class CreateClientJFrame extends JFrame {
 	 * @return the jTxtFIeld_BirthMonth
 	 */
 	public JTextField getJTxtFIeld_BirthMonth() {
-		return JTxtFIeld_BirthMonth;
+		return JComBox_ClientBirthMonth;
 	}
 
 	/**
 	 * @param jTxtFIeld_BirthMonth the jTxtFIeld_BirthMonth to set
 	 */
 	public void setJTxtFIeld_BirthMonth(JTextField jTxtFIeld_BirthMonth) {
-		JTxtFIeld_BirthMonth = jTxtFIeld_BirthMonth;
+		JComBox_ClientBirthMonth = jTxtFIeld_BirthMonth;
 	}
 
 	/**
 	 * @return the jTxtField_BirthDay
 	 */
 	public JTextField getJTxtField_BirthDay() {
-		return JTxtField_BirthDay;
+		return JComBox_ClientBirthDay;
 	}
 
 	/**
 	 * @param jTxtField_BirthDay the jTxtField_BirthDay to set
 	 */
 	public void setJTxtField_BirthDay(JTextField jTxtField_BirthDay) {
-		JTxtField_BirthDay = jTxtField_BirthDay;
+		JComBox_ClientBirthDay = jTxtField_BirthDay;
 	}
 
 	/**
 	 * @return the jTxtField_BirthYear
 	 */
 	public JTextField getJTxtField_BirthYear() {
-		return JTxtField_BirthYear;
+		return JComBox_BirthYear;
 	}
 
 	/**
 	 * @param jTxtField_BirthYear the jTxtField_BirthYear to set
 	 */
 	public void setJTxtField_BirthYear(JTextField jTxtField_BirthYear) {
-		JTxtField_BirthYear = jTxtField_BirthYear;
+		JComBox_BirthYear = jTxtField_BirthYear;
 	}
 
 	/**
@@ -1004,11 +1093,4 @@ public class CreateClientJFrame extends JFrame {
 	public void setJTxtField_InsuredPhone(JTextField jTxtField_InsuredPhone) {
 		JTxtField_InsuredPhone = jTxtField_InsuredPhone;
 	}
-	
-	
-
-
-	
-	
-	
 }
