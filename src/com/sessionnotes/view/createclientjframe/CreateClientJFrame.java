@@ -7,6 +7,7 @@ import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.SystemColor;
 import java.text.NumberFormat;
+import java.text.ParseException;
 import java.util.Calendar;
 
 import javax.swing.JButton;
@@ -20,6 +21,7 @@ import javax.swing.SpringLayout;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
+import javax.swing.text.MaskFormatter;
 import javax.swing.text.NumberFormatter;
 
 /**
@@ -57,7 +59,7 @@ public class CreateClientJFrame extends JFrame {
 	private JButton JBtnSaveClient;
 	private JButton JBtnCancel;
 	private JButton JBtn_copyClientInfo;
-	
+	private MaskFormatter phoneNumFormat;
 	
 	
 	//Auto generated code
@@ -76,7 +78,7 @@ public class CreateClientJFrame extends JFrame {
 	private JComboBox<String> JComBox_ClientBirthDay;
 	private JComboBox<String> JComBox_ClientBirthYear;
 	private JLabel JLbl_ClientPhone;
-	private JTextField JTxtField_ClientPhone;
+	private JFormattedTextField JTxtField_ClientPhone;
 	private JLabel JLbl_ClientEmail;
 	private JTextField JTxtField_ClientEmail;
 	private JLabel JLbl_ClientFee;
@@ -105,13 +107,13 @@ public class CreateClientJFrame extends JFrame {
 	private JComboBox<String> JComBox_InsuredBirthDay;
 	private JComboBox<String> JComBox_InsuredBirthYear;
 	private JLabel JLbl_InsuredPhone;
-	private JTextField JTxtField_InsuredPhone;
+	private JFormattedTextField JTxtField_InsuredPhone;
 	private JLabel JLbl_ClientStreet;
 	private JLabel JLbl_ClientAptSuite;
 	private JLabel JLbl_ClientCity;
 	private JLabel JLbl_ClientState;
 	private JLabel JLbl_ClientZip;
-	private JLabel lblNewLabel;
+	private JLabel JLbl_MoneySymbol;
 	private JLabel JLbl_InsuredCity;
 	private JLabel JLbl_InsuredState;
 	private JLabel JLbl_InsuredZip;
@@ -143,7 +145,14 @@ public class CreateClientJFrame extends JFrame {
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public CreateClientJFrame() {
 		
-		
+		 try {
+			phoneNumFormat = new MaskFormatter("###-###-####");
+			phoneNumFormat.setAllowsInvalid(true);
+			
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		
 		//Auto generated code below this line.
@@ -271,7 +280,7 @@ public class CreateClientJFrame extends JFrame {
 		JLbl_ClientPhone.setFont(new Font("Tahoma", Font.BOLD, 11));
 		JPanel_ClientInfo.add(JLbl_ClientPhone);
 		
-		JTxtField_ClientPhone = new JTextField();
+		JTxtField_ClientPhone = new JFormattedTextField(phoneNumFormat);
 		sl_JPanel_ClientInfo.putConstraint(SpringLayout.WEST, JTxtField_ClientPhone, 10, SpringLayout.WEST, JPanel_ClientInfo);
 		JTxtField_ClientPhone.setToolTipText("###-###-####");
 		sl_JPanel_ClientInfo.putConstraint(SpringLayout.SOUTH, JLbl_ClientPhone, -6, SpringLayout.NORTH, JTxtField_ClientPhone);
@@ -394,12 +403,12 @@ public class CreateClientJFrame extends JFrame {
 		JLbl_ClientZip.setFont(new Font("Tahoma", Font.BOLD, 11));
 		JPanel_ClientInfo.add(JLbl_ClientZip);
 		
-		lblNewLabel = new JLabel(" $");
-		sl_JPanel_ClientInfo.putConstraint(SpringLayout.WEST, JFormatTxtField_ClientFee, -4, SpringLayout.EAST, lblNewLabel);
-		sl_JPanel_ClientInfo.putConstraint(SpringLayout.WEST, lblNewLabel, 5, SpringLayout.EAST, JTxtField_ClientEmail);
-		sl_JPanel_ClientInfo.putConstraint(SpringLayout.SOUTH, lblNewLabel, -29, SpringLayout.NORTH, JTxtField_SecondaryMiddleName);
-		sl_JPanel_ClientInfo.putConstraint(SpringLayout.EAST, lblNewLabel, -99, SpringLayout.EAST, JPanel_ClientInfo);
-		JPanel_ClientInfo.add(lblNewLabel);
+		JLbl_MoneySymbol = new JLabel(" $");
+		sl_JPanel_ClientInfo.putConstraint(SpringLayout.WEST, JFormatTxtField_ClientFee, -4, SpringLayout.EAST, JLbl_MoneySymbol);
+		sl_JPanel_ClientInfo.putConstraint(SpringLayout.WEST, JLbl_MoneySymbol, 5, SpringLayout.EAST, JTxtField_ClientEmail);
+		sl_JPanel_ClientInfo.putConstraint(SpringLayout.SOUTH, JLbl_MoneySymbol, -29, SpringLayout.NORTH, JTxtField_SecondaryMiddleName);
+		sl_JPanel_ClientInfo.putConstraint(SpringLayout.EAST, JLbl_MoneySymbol, -99, SpringLayout.EAST, JPanel_ClientInfo);
+		JPanel_ClientInfo.add(JLbl_MoneySymbol);
 		JPanel_InsuranceInfo.setBackground(new Color(255, 255, 204));
 		contentPane.add(JPanel_InsuranceInfo);
 		SpringLayout sl_JPanel_InsuranceInfo = new SpringLayout();
@@ -539,7 +548,7 @@ public class CreateClientJFrame extends JFrame {
 		JLbl_InsuredPhone.setFont(new Font("Tahoma", Font.BOLD, 11));
 		JPanel_InsuranceInfo.add(JLbl_InsuredPhone);
 		
-		JTxtField_InsuredPhone = new JTextField();
+		JTxtField_InsuredPhone = new JFormattedTextField(phoneNumFormat);
 		sl_JPanel_InsuranceInfo.putConstraint(SpringLayout.NORTH, JLbl_InsuredBirthDate, 12, SpringLayout.SOUTH, JTxtField_InsuredPhone);
 		sl_JPanel_InsuranceInfo.putConstraint(SpringLayout.WEST, JTxtField_InsuredPhone, 61, SpringLayout.WEST, JPanel_InsuranceInfo);
 		sl_JPanel_InsuranceInfo.putConstraint(SpringLayout.EAST, JTxtField_InsuredPhone, -242, SpringLayout.EAST, JPanel_InsuranceInfo);
