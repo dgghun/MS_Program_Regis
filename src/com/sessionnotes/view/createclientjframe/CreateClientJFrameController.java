@@ -23,14 +23,14 @@ import com.sessionnotes.model.domain.Name;
  * and requests and communications from the UI and the business 
  * manager.
  * 
- * As of right now there isn't any input error or input type checking besides
- * making sure the required fields are entered. This will be implemented
- * at a later date. As of now these errors are captured in a general exception
- * try catch block.
+ * As of right now there input error checking and format checking
+ * but still more testing needs to be done.
  * 
  * 
  * @author David Garcia
- * @version 1.0
+ * @version 2.0	
+ * Added some input error checking.
+ * 
  * @since 06-17-2018
  *
  */
@@ -39,6 +39,9 @@ public class CreateClientJFrameController implements ActionListener{
 	private CreateClientJFrame clientJFrame;
 	
 	
+	/**
+	 * Default constructor
+	 */
 	public CreateClientJFrameController() {
 		
 	}
