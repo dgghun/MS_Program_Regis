@@ -12,7 +12,6 @@ import javax.swing.JOptionPane;
 
 import com.sessionnotes.model.business.manager.SessionNotesManager;
 import com.sessionnotes.model.domain.Client;
-import com.sessionnotes.model.domain.Name;
 import com.sessionnotes.model.domain.Session;
 
 /**
@@ -47,7 +46,7 @@ public class CreateSessionJFrameController implements ActionListener{
 	 * Constructor
 	 * @param sessoinJFrame The UI JFrame that will be controlled
 	 */
-	public CreateSessionJFrameController(CreateSessionJFrame sessionJFrame) {
+	public CreateSessionJFrameController(CreateSessionJFrame sessionJFrame, Client client) {
 		
 		this.sessionJFrame = sessionJFrame;
 		
@@ -55,19 +54,8 @@ public class CreateSessionJFrameController implements ActionListener{
 		sessionJFrame.getjBtnCancel().addActionListener(this);
 		sessionJFrame.getjBtnSave().addActionListener(this);
 		
-		//TODO - the Client will be pulled into this class in future implementations.
-		Client client = new Client();
-		client.setName(new Name("David", "Garcia", "G"));
-		client.setIdNumber(1234);
-		client.setPhoneNumber("909-555-1234");
-		
 		setClientInfoToForm(client);	// Set client info on form
 		sessionJFrame.setVisible(true);
-		
-		
-		
-
-		
 	}
 
 

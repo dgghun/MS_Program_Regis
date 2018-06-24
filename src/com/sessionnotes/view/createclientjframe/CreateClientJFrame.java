@@ -14,6 +14,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
+import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -47,7 +48,7 @@ import javax.swing.text.NumberFormatter;
  * @since 06-17-2018
  *
  */
-public class CreateClientJFrame extends JFrame {
+public class CreateClientJFrame extends JInternalFrame {
 
 	/**
 	 * 

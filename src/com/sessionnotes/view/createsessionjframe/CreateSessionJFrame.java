@@ -5,14 +5,12 @@ import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.text.NumberFormat;
-import java.util.Date;
-import java.util.GregorianCalendar;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JCheckBox;
 import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
+import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -20,7 +18,6 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.SpringLayout;
-import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.text.NumberFormatter;
 
@@ -28,10 +25,20 @@ import com.github.lgooddatepicker.components.DatePicker;
 import com.github.lgooddatepicker.components.DatePickerSettings;
 import com.github.lgooddatepicker.components.TimePicker;
 import com.github.lgooddatepicker.components.TimePickerSettings;
-import com.sessionnotes.view.createclientjframe.CreateClientJFrameController;
+import com.sessionnotes.model.domain.Client;
+import com.sessionnotes.model.domain.Name;
 
-
-public class CreateSessionJFrame extends JFrame {
+/**
+ * 
+ * <h1>CreateSessionJFrame.java</h1>
+ * 
+ *
+ * @author David Garcia
+ * @version 1.0
+ * @since 06-24-2018
+ *
+ */
+public class CreateSessionJFrame extends JInternalFrame {
 
 	
 	//My attribute declarations
@@ -260,8 +267,7 @@ public class CreateSessionJFrame extends JFrame {
 		jFormatTxtFldClientFee = JFormatTxtField_ClientFee;
 		jFormatTxtFldFeePaid = JFormatTxtField_FeePaid;
 		jTxtFldPaymenType = JTxtField_PaymentType;
-		setControllerAndVisibility();	//set frame visibility.
-		
+		setJFrameController();	//set frame controller.
 		
 	}
 	
@@ -270,11 +276,19 @@ public class CreateSessionJFrame extends JFrame {
 	/**
 	 * Basic method to set controller and frame visibility
 	 */
-	private void setControllerAndVisibility() {
-		sessionJFrameController = new CreateSessionJFrameController(this);	//sets up controller for this view
-		this.setVisible(true);	//show frame
+	private void setJFrameController() {
+		
+		//TODO - the Client will be passed into this class in future implementations.
+		Client client = new Client();
+		client.setName(new Name("David", "Garcia", "G"));
+		client.setIdNumber(1234);
+		client.setPhoneNumber("909-555-1234");
+		
+		sessionJFrameController = new CreateSessionJFrameController(this, client);	//sets up controller for this frame
+
 	}
 
+	
 	/**
 	 * Settings for a DatePicker class
 	 * @return DatePickerSettings
