@@ -27,7 +27,9 @@ import com.sessionnotes.model.service.manager.PropertyManager;
 public class ServiceFactory {
 
 	// Singleton pattern for only one serviceFactory
-	private ServiceFactory() {}
+	private ServiceFactory() {
+		System.out.println("ServiceFactory: Entering ServiceFactory() contructor method");
+	}
 	private static ServiceFactory serviceFactory = new ServiceFactory();
 	public static ServiceFactory getInstance() { return serviceFactory;}
 	

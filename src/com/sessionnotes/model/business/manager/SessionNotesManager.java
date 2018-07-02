@@ -30,7 +30,9 @@ public class SessionNotesManager extends ManagerSuperType{
 	
 	
 	// Singleton pattern for one SessionNotesManager
-	private SessionNotesManager() {}
+	private SessionNotesManager() {
+		System.out.println("SessionNotesManager: Entering SessionNotesManager() contructor method");
+	}
 	private static SessionNotesManager sessionNotesManager = new SessionNotesManager();
 	public static SessionNotesManager getInstance() {return sessionNotesManager;}
 	
@@ -115,5 +117,13 @@ public class SessionNotesManager extends ManagerSuperType{
 		return success;
 	}
 	
-
+	
+	
+	/**
+	 * 
+	 * @return boolean Checks properties file loaded properly flag.
+	 */
+	public boolean isLoadError() {
+		return SessionNotesManager.isLOAD_ERROR();
+	}
 }

@@ -21,18 +21,22 @@ import com.sessionnotes.model.service.manager.PropertyManager;
  */
 public abstract class ManagerSuperType {
 	
+	protected static boolean LOAD_ERROR = false;
+	
 	/**
 	 * This static block is ran once when this class
 	 * is instantiated. If loading of the properties 
 	 * file is unsuccessful the application will close. 
 	 */
 	static {
+		System.out.println("ManagerSuperType: Entering static method");
 		try {
 			ManagerSuperType.loadProperties();
 			
 		}catch(PropertyFileNotFoundException exception) {
-			System.out.println("Failed to load critical application properties. Exiting application...");
-			System.exit(1);
+			System.out.println("ManagerSuperType: Failed to load critical application properties.");
+			LOAD_ERROR = true;
+//			System.exit(1);
 		}
 	}
 	
@@ -56,16 +60,20 @@ public abstract class ManagerSuperType {
 	 * @throws PropertyFileNotFoundException
 	 */
 	public static void loadProperties() throws PropertyFileNotFoundException{
-		String propertyFileLocation = System.getProperty("application.properties");	// get properties path.
-		
-		if(propertyFileLocation != null) {
-			PropertyManager.loadProperties(propertyFileLocation);
-		}
-		else {
-			final String MESSAGE = "Property file path not found. (filePath = null)";
-			System.out.println(MESSAGE);
-			throw new PropertyFileNotFoundException(MESSAGE);
-		}
+//		String propertyFileLocation = System.getProperty(propertiesFile);	// get properties path.
+		final String propertiesFile = "config\\application.properties";
+		PropertyManager.loadProperties(propertiesFile);
+	
 	}
+
+
+	/**
+	 * @return the lOAD_ERROR
+	 */
+	protected static boolean isLOAD_ERROR() {
+		return LOAD_ERROR;
+	}
+	
+	
 
 }

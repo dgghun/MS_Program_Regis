@@ -12,7 +12,7 @@ public class PropertyManagerTest extends TestCase{
 	@Before
 	protected void setUp() throws Exception {
 		super.setUp();
-		String propLocation = System.getProperty("application.properties");
+		String propLocation = System.getProperty("config/application.properties");
 		PropertyManager.loadProperties(propLocation);
 		
 	}

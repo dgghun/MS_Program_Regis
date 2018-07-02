@@ -97,6 +97,7 @@ public class MainJFrame extends JFrame {
 //		this.pack();
 		this.setSize(1000, 700);
 		this.setVisible(true);
+		
 	}
 
 	/**

@@ -305,12 +305,12 @@ public class CreateClientJFrame extends JInternalFrame {
 		
 		JLbl_ClientFee = new JLabel("Client Fee");
 		sl_JPanel_ClientInfo.putConstraint(SpringLayout.NORTH, JLbl_ClientFee, 0, SpringLayout.NORTH, JLbl_ClientPhone);
+		sl_JPanel_ClientInfo.putConstraint(SpringLayout.WEST, JLbl_ClientFee, 118, SpringLayout.EAST, JLbl_ClientEmail);
 		JLbl_ClientFee.setFont(new Font("Tahoma", Font.BOLD, 11));
 		JPanel_ClientInfo.add(JLbl_ClientFee);
 		
 		JFormatTxtField_ClientFee = new JFormattedTextField(getNumberFormatter(Integer.class, 0, Integer.MAX_VALUE, true, false));
 		sl_JPanel_ClientInfo.putConstraint(SpringLayout.NORTH, JFormatTxtField_ClientFee, 6, SpringLayout.SOUTH, JLbl_ClientFee);
-		sl_JPanel_ClientInfo.putConstraint(SpringLayout.WEST, JLbl_ClientFee, 0, SpringLayout.WEST, JFormatTxtField_ClientFee);
 		sl_JPanel_ClientInfo.putConstraint(SpringLayout.EAST, JFormatTxtField_ClientFee, -17, SpringLayout.EAST, JPanel_ClientInfo);
 		JFormatTxtField_ClientFee.setToolTipText("Session Fee");
 		JPanel_ClientInfo.add(JFormatTxtField_ClientFee);
@@ -332,18 +332,18 @@ public class CreateClientJFrame extends JInternalFrame {
 		JTxtField_SecondaryFirstName.setColumns(10);
 		
 		JTxtField_SecondaryLastName = new JTextField();
+		sl_JPanel_ClientInfo.putConstraint(SpringLayout.WEST, JTxtField_SecondaryLastName, 6, SpringLayout.EAST, JTxtField_SecondaryFirstName);
 		JTxtField_SecondaryLastName.setToolTipText("Last Name");
 		sl_JPanel_ClientInfo.putConstraint(SpringLayout.NORTH, JTxtField_SecondaryLastName, 26, SpringLayout.SOUTH, JTxtField_ClientEmail);
-		sl_JPanel_ClientInfo.putConstraint(SpringLayout.WEST, JTxtField_SecondaryLastName, 6, SpringLayout.EAST, JTxtField_SecondaryFirstName);
 		JPanel_ClientInfo.add(JTxtField_SecondaryLastName);
 		JTxtField_SecondaryLastName.setColumns(10);
 		
 		JTxtField_SecondaryMiddleName = new JTextField();
-		sl_JPanel_ClientInfo.putConstraint(SpringLayout.SOUTH, JTxtField_SecondaryMiddleName, -11, SpringLayout.SOUTH, JPanel_ClientInfo);
-		JTxtField_SecondaryMiddleName.setToolTipText("Middle Name");
 		sl_JPanel_ClientInfo.putConstraint(SpringLayout.EAST, JTxtField_SecondaryLastName, -6, SpringLayout.WEST, JTxtField_SecondaryMiddleName);
+		sl_JPanel_ClientInfo.putConstraint(SpringLayout.NORTH, JTxtField_SecondaryMiddleName, 0, SpringLayout.NORTH, JTxtField_SecondaryFirstName);
 		sl_JPanel_ClientInfo.putConstraint(SpringLayout.WEST, JTxtField_SecondaryMiddleName, 258, SpringLayout.WEST, JPanel_ClientInfo);
-		sl_JPanel_ClientInfo.putConstraint(SpringLayout.EAST, JTxtField_SecondaryMiddleName, 388, SpringLayout.WEST, JPanel_ClientInfo);
+		sl_JPanel_ClientInfo.putConstraint(SpringLayout.EAST, JTxtField_SecondaryMiddleName, 0, SpringLayout.EAST, JTxtField_clientMiddleName);
+		JTxtField_SecondaryMiddleName.setToolTipText("Middle Name");
 		JPanel_ClientInfo.add(JTxtField_SecondaryMiddleName);
 		JTxtField_SecondaryMiddleName.setColumns(10);
 		
@@ -405,10 +405,11 @@ public class CreateClientJFrame extends JInternalFrame {
 		JPanel_ClientInfo.add(JLbl_ClientZip);
 		
 		JLbl_MoneySymbol = new JLabel(" $");
-		sl_JPanel_ClientInfo.putConstraint(SpringLayout.WEST, JFormatTxtField_ClientFee, -4, SpringLayout.EAST, JLbl_MoneySymbol);
-		sl_JPanel_ClientInfo.putConstraint(SpringLayout.WEST, JLbl_MoneySymbol, 5, SpringLayout.EAST, JTxtField_ClientEmail);
-		sl_JPanel_ClientInfo.putConstraint(SpringLayout.SOUTH, JLbl_MoneySymbol, -29, SpringLayout.NORTH, JTxtField_SecondaryMiddleName);
+		JLbl_MoneySymbol.setHorizontalAlignment(SwingConstants.TRAILING);
 		sl_JPanel_ClientInfo.putConstraint(SpringLayout.EAST, JLbl_MoneySymbol, -99, SpringLayout.EAST, JPanel_ClientInfo);
+		sl_JPanel_ClientInfo.putConstraint(SpringLayout.WEST, JFormatTxtField_ClientFee, 6, SpringLayout.EAST, JLbl_MoneySymbol);
+		sl_JPanel_ClientInfo.putConstraint(SpringLayout.NORTH, JLbl_MoneySymbol, 3, SpringLayout.NORTH, JTxtField_ClientPhone);
+		sl_JPanel_ClientInfo.putConstraint(SpringLayout.WEST, JLbl_MoneySymbol, 5, SpringLayout.EAST, JTxtField_ClientEmail);
 		JPanel_ClientInfo.add(JLbl_MoneySymbol);
 		JPanel_InsuranceInfo.setBackground(new Color(255, 255, 204));
 		contentPane.add(JPanel_InsuranceInfo);

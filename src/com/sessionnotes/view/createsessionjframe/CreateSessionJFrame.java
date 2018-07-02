@@ -2,7 +2,6 @@ package com.sessionnotes.view.createsessionjframe;
 
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.EventQueue;
 import java.awt.Font;
 import java.text.NumberFormat;
 
@@ -65,22 +64,22 @@ public class CreateSessionJFrame extends JInternalFrame {
 	private JFormattedTextField JFormatTxtField_ClientFee;
 	private JFormattedTextField JFormatTxtField_FeePaid;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					@SuppressWarnings("unused")
-					CreateSessionJFrame frame = new CreateSessionJFrame();
-//					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+//	/**
+//	 * Launch the application.
+//	 */
+//	public static void main(String[] args) {
+//		EventQueue.invokeLater(new Runnable() {
+//			public void run() {
+//				try {
+//					@SuppressWarnings("unused")
+//					CreateSessionJFrame frame = new CreateSessionJFrame();
+////					frame.setVisible(true);
+//				} catch (Exception e) {
+//					e.printStackTrace();
+//				}
+//			}
+//		});
+//	}
 
 	/**
 	 * Create the frame.
@@ -277,7 +276,6 @@ public class CreateSessionJFrame extends JInternalFrame {
 	 * Basic method to set controller and frame visibility
 	 */
 	private void setJFrameController() {
-		
 		//TODO - the Client will be passed into this class in future implementations.
 		Client client = new Client();
 		client.setName(new Name("David", "Garcia", "G"));

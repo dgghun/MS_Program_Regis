@@ -34,7 +34,7 @@ public class PropertyManager {
 	 * @throws PropertyFileNotFoundException 
 	 */
 	public static void loadProperties(String propertiesFileLocation) throws PropertyFileNotFoundException{
-		
+		System.out.println("PropertyManager: Entering loadProperties() method");
 		properties = new Properties();
 		FileInputStream fileInputStream = null;
 		
